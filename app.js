@@ -19,7 +19,7 @@ const MOVES_DATA = {
         <line x1="60" y1="75" x2="75" y2="105" stroke="#f5e642" stroke-width="2.5" stroke-linecap="round"/>
         <line x1="75" y1="105" x2="78" y2="130" stroke="#f5e642" stroke-width="2.5" stroke-linecap="round"/>
       </svg>`,
-      youtubeQuery: "locking lock move tutorial"
+      bilibiliQuery: "locking lock move 教学"
     },
     {
       name: "Point",
@@ -38,7 +38,7 @@ const MOVES_DATA = {
         <line x1="55" y1="75" x2="70" y2="105" stroke="#f5e642" stroke-width="2.5" stroke-linecap="round"/>
         <line x1="70" y1="105" x2="72" y2="130" stroke="#f5e642" stroke-width="2.5" stroke-linecap="round"/>
       </svg>`,
-      youtubeQuery: "locking point move tutorial"
+      bilibiliQuery: "locking point move 教学"
     },
     {
       name: "Wrist Roll",
@@ -60,7 +60,7 @@ const MOVES_DATA = {
         <line x1="60" y1="75" x2="72" y2="105" stroke="#f5e642" stroke-width="2.5" stroke-linecap="round"/>
         <line x1="72" y1="105" x2="75" y2="130" stroke="#f5e642" stroke-width="2.5" stroke-linecap="round"/>
       </svg>`,
-      youtubeQuery: "locking wrist roll tutorial"
+      bilibiliQuery: "locking wrist roll 教学"
     },
     {
       name: "Scooby Doo",
@@ -80,7 +80,7 @@ const MOVES_DATA = {
         <line x1="68" y1="78" x2="80" y2="105" stroke="#f5e642" stroke-width="2.5" stroke-linecap="round"/>
         <line x1="80" y1="105" x2="83" y2="130" stroke="#f5e642" stroke-width="2.5" stroke-linecap="round"/>
       </svg>`,
-      youtubeQuery: "locking scooby doo move tutorial"
+      bilibiliQuery: "locking scooby doo move 教学"
     },
     {
       name: "Leo Walk",
@@ -100,7 +100,7 @@ const MOVES_DATA = {
         <line x1="55" y1="72" x2="75" y2="80" stroke="#f5e642" stroke-width="2.5" stroke-linecap="round"/>
         <line x1="75" y1="80" x2="80" y2="65" stroke="#f5e642" stroke-width="2.5" stroke-linecap="round"/>
       </svg>`,
-      youtubeQuery: "locking leo walk tutorial"
+      bilibiliQuery: "locking leo walk 教学"
     },
     {
       name: "Funky Chicken",
@@ -123,7 +123,7 @@ const MOVES_DATA = {
         <line x1="60" y1="75" x2="72" y2="105" stroke="#f5e642" stroke-width="2.5" stroke-linecap="round"/>
         <line x1="72" y1="105" x2="75" y2="130" stroke="#f5e642" stroke-width="2.5" stroke-linecap="round"/>
       </svg>`,
-      youtubeQuery: "locking funky chicken tutorial"
+      bilibiliQuery: "locking funky chicken 教学"
     },
     {
       name: "Pimp Walk",
@@ -143,7 +143,7 @@ const MOVES_DATA = {
         <line x1="55" y1="75" x2="78" y2="95" stroke="#f5e642" stroke-width="2.5" stroke-linecap="round"/>
         <line x1="78" y1="95" x2="85" y2="130" stroke="#f5e642" stroke-width="2.5" stroke-linecap="round"/>
       </svg>`,
-      youtubeQuery: "locking pimp walk tutorial"
+      bilibiliQuery: "locking pimp walk 教学"
     },
     {
       name: "Stop & Go",
@@ -163,7 +163,7 @@ const MOVES_DATA = {
         <line x1="58" y1="75" x2="80" y2="90" stroke="#f5e642" stroke-width="2.5" stroke-linecap="round"/>
         <line x1="80" y1="90" x2="88" y2="120" stroke="#f5e642" stroke-width="2.5" stroke-linecap="round"/>
       </svg>`,
-      youtubeQuery: "locking stop and go tutorial"
+      bilibiliQuery: "locking stop and go 教学"
     }
   ],
   popping: [
@@ -189,7 +189,7 @@ const MOVES_DATA = {
         <line x1="55" y1="70" x2="52" y2="73" stroke="#f5e642" stroke-width="1.5" stroke-linecap="round"/>
         <line x1="65" y1="70" x2="68" y2="73" stroke="#f5e642" stroke-width="1.5" stroke-linecap="round"/>
       </svg>`,
-      youtubeQuery: "popping hit pop tutorial beginner"
+      bilibiliQuery: "popping hit pop 教学 beginner"
     },
     {
       name: "Fresno",
@@ -211,7 +211,7 @@ const MOVES_DATA = {
         <line x1="60" y1="75" x2="75" y2="100" stroke="#f5e642" stroke-width="2.5" stroke-linecap="round"/>
         <line x1="75" y1="100" x2="80" y2="130" stroke="#f5e642" stroke-width="2.5" stroke-linecap="round"/>
       </svg>`,
-      youtubeQuery: "popping fresno tutorial"
+      bilibiliQuery: "popping fresno 教学"
     },
     {
       name: "Boogaloo",
@@ -231,7 +231,7 @@ const MOVES_DATA = {
         <line x1="60" y1="80" x2="72" y2="105" stroke="#f5e642" stroke-width="2.5" stroke-linecap="round"/>
         <line x1="72" y1="105" x2="75" y2="130" stroke="#f5e642" stroke-width="2.5" stroke-linecap="round"/>
       </svg>`,
-      youtubeQuery: "boogaloo dance tutorial"
+      bilibiliQuery: "boogaloo dance 教学"
     },
     {
       name: "Dimestop",
@@ -252,7 +252,7 @@ const MOVES_DATA = {
         <line x1="82" y1="30" x2="88" y2="28" stroke="#f5e642" stroke-width="1.5" stroke-linecap="round"/>
         <line x1="86" y1="37" x2="92" y2="38" stroke="#f5e642" stroke-width="1.5" stroke-linecap="round"/>
       </svg>`,
-      youtubeQuery: "popping dimestop tutorial"
+      bilibiliQuery: "popping dimestop 教学"
     },
     {
       name: "Tutting",
@@ -272,7 +272,7 @@ const MOVES_DATA = {
         <line x1="60" y1="75" x2="72" y2="105" stroke="#f5e642" stroke-width="2.5" stroke-linecap="round"/>
         <line x1="72" y1="105" x2="75" y2="130" stroke="#f5e642" stroke-width="2.5" stroke-linecap="round"/>
       </svg>`,
-      youtubeQuery: "tutting dance tutorial"
+      bilibiliQuery: "tutting dance 教学"
     },
     {
       name: "Gliding",
@@ -293,7 +293,7 @@ const MOVES_DATA = {
         <line x1="80" y1="100" x2="100" y2="130" stroke="#f5e642" stroke-width="2.5" stroke-linecap="round"/>
         <path d="M95 128 L100 130 L95 132" stroke="#f5e642" stroke-width="1.5" stroke-linecap="round" fill="none"/>
       </svg>`,
-      youtubeQuery: "popping gliding tutorial"
+      bilibiliQuery: "popping gliding 教学"
     },
     {
       name: "Waving",
@@ -311,7 +311,7 @@ const MOVES_DATA = {
         <line x1="60" y1="75" x2="70" y2="105" stroke="#f5e642" stroke-width="2.5" stroke-linecap="round"/>
         <line x1="70" y1="105" x2="72" y2="130" stroke="#f5e642" stroke-width="2.5" stroke-linecap="round"/>
       </svg>`,
-      youtubeQuery: "arm wave popping tutorial"
+      bilibiliQuery: "arm wave popping 教学"
     },
     {
       name: "Robot",
@@ -332,7 +332,7 @@ const MOVES_DATA = {
         <line x1="75" y1="78" x2="75" y2="130" stroke="#f5e642" stroke-width="2.5" stroke-linecap="round"/>
         <line x1="65" y1="17" x2="68" y2="14" stroke="#f5e642" stroke-width="2" stroke-linecap="round"/>
       </svg>`,
-      youtubeQuery: "robot dance tutorial popping"
+      bilibiliQuery: "robot dance 教学 popping"
     }
   ],
   hiphop: [
@@ -355,7 +355,7 @@ const MOVES_DATA = {
         <line x1="70" y1="100" x2="72" y2="130" stroke="#f5e642" stroke-width="2.5" stroke-linecap="round"/>
         <path d="M55 82 L60 86 L65 82" stroke="#f5e642" stroke-width="1.5" stroke-linecap="round" fill="none"/>
       </svg>`,
-      youtubeQuery: "hip hop bounce tutorial beginner"
+      bilibiliQuery: "hip hop bounce 教学 beginner"
     },
     {
       name: "Running Man",
@@ -375,7 +375,7 @@ const MOVES_DATA = {
         <line x1="55" y1="72" x2="35" y2="90" stroke="#f5e642" stroke-width="2.5" stroke-linecap="round"/>
         <line x1="35" y1="90" x2="25" y2="120" stroke="#f5e642" stroke-width="2.5" stroke-linecap="round"/>
       </svg>`,
-      youtubeQuery: "running man dance tutorial"
+      bilibiliQuery: "running man dance 教学"
     },
     {
       name: "Cabbage Patch",
@@ -393,7 +393,7 @@ const MOVES_DATA = {
         <line x1="60" y1="75" x2="72" y2="105" stroke="#f5e642" stroke-width="2.5" stroke-linecap="round"/>
         <line x1="72" y1="105" x2="75" y2="130" stroke="#f5e642" stroke-width="2.5" stroke-linecap="round"/>
       </svg>`,
-      youtubeQuery: "cabbage patch dance tutorial"
+      bilibiliQuery: "cabbage patch dance 教学"
     },
     {
       name: "Harlem Shake",
@@ -413,7 +413,7 @@ const MOVES_DATA = {
         <line x1="60" y1="75" x2="72" y2="105" stroke="#f5e642" stroke-width="2.5" stroke-linecap="round"/>
         <line x1="72" y1="105" x2="75" y2="130" stroke="#f5e642" stroke-width="2.5" stroke-linecap="round"/>
       </svg>`,
-      youtubeQuery: "harlem shake dance tutorial original"
+      bilibiliQuery: "harlem shake dance 教学 original"
     },
     {
       name: "Prep",
@@ -433,7 +433,7 @@ const MOVES_DATA = {
         <line x1="60" y1="75" x2="72" y2="105" stroke="#f5e642" stroke-width="2.5" stroke-linecap="round"/>
         <line x1="72" y1="105" x2="75" y2="130" stroke="#f5e642" stroke-width="2.5" stroke-linecap="round"/>
       </svg>`,
-      youtubeQuery: "hip hop prep step tutorial"
+      bilibiliQuery: "hip hop prep step 教学"
     },
     {
       name: "Smurf",
@@ -453,7 +453,7 @@ const MOVES_DATA = {
         <line x1="60" y1="75" x2="78" y2="95" stroke="#f5e642" stroke-width="2.5" stroke-linecap="round"/>
         <line x1="78" y1="95" x2="85" y2="120" stroke="#f5e642" stroke-width="2.5" stroke-linecap="round"/>
       </svg>`,
-      youtubeQuery: "smurf dance move tutorial hip hop"
+      bilibiliQuery: "smurf dance move 教学 hip hop"
     },
     {
       name: "Reject",
@@ -473,7 +473,7 @@ const MOVES_DATA = {
         <line x1="66" y1="75" x2="45" y2="85" stroke="#f5e642" stroke-width="2.5" stroke-linecap="round"/>
         <line x1="45" y1="85" x2="30" y2="80" stroke="#f5e642" stroke-width="2.5" stroke-linecap="round"/>
       </svg>`,
-      youtubeQuery: "reject dance move tutorial hip hop"
+      bilibiliQuery: "reject dance move 教学 hip hop"
     },
     {
       name: "Toe Stand",
@@ -494,7 +494,7 @@ const MOVES_DATA = {
         <line x1="60" y1="80" x2="75" y2="88" stroke="#f5e642" stroke-width="2.5" stroke-linecap="round"/>
         <line x1="75" y1="88" x2="78" y2="80" stroke="#f5e642" stroke-width="2.5" stroke-linecap="round"/>
       </svg>`,
-      youtubeQuery: "toe stand dance balance tutorial"
+      bilibiliQuery: "toe stand dance balance 教学"
     }
   ]
 };
@@ -536,7 +536,7 @@ function renderCards(style) {
         <ul class="card-tips">
           ${move.tips.map(tip => `<li>${tip}</li>`).join('')}
         </ul>
-        <a class="card-bili" href="${isMobile ? `bilibili://search?keyword=${encodeURIComponent(move.youtubeQuery)}` : `https://search.bilibili.com/all?keyword=${encodeURIComponent(move.youtubeQuery)}`}" ${isMobile ? '' : 'target="_blank" rel="noopener noreferrer"'} data-keyword="${encodeURIComponent(move.youtubeQuery)}">
+        <a class="card-bili" href="${isMobile ? `bilibili://search?keyword=${encodeURIComponent(move.bilibiliQuery)}` : `https://search.bilibili.com/all?keyword=${encodeURIComponent(move.bilibiliQuery)}`}" ${isMobile ? '' : 'target="_blank" rel="noopener noreferrer"'} data-keyword="${encodeURIComponent(move.bilibiliQuery)}">
           <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.813 4.653h.854c1.51.054 2.769.578 3.773 1.574 1.004.995 1.524 2.249 1.56 3.76v7.36c-.036 1.51-.556 2.769-1.56 3.773s-2.262 1.524-3.773 1.56H5.333c-1.51-.036-2.769-.556-3.773-1.56S.036 18.858 0 17.347v-7.36c.036-1.511.556-2.765 1.56-3.76 1.004-.996 2.262-1.52 3.773-1.574h.774l-1.174-1.12a1.234 1.234 0 0 1-.373-.906c0-.356.124-.658.373-.907l.027-.027c.267-.249.573-.373.92-.373.347 0 .653.124.92.373L9.653 4.44c.071.071.134.142.187.213h4.267a.836.836 0 0 1 .16-.213l2.853-2.747c.267-.249.573-.373.92-.373.347 0 .662.124.929.373.249.249.373.551.373.907 0 .355-.124.657-.373.906zM5.333 7.24c-.746.018-1.373.276-1.88.773-.506.498-.769 1.13-.786 1.894v7.52c.017.764.28 1.395.786 1.893.507.498 1.134.756 1.88.773h13.334c.746-.017 1.373-.275 1.88-.773.506-.498.769-1.129.786-1.893v-7.52c-.017-.765-.28-1.396-.786-1.894-.507-.497-1.134-.755-1.88-.773zM8 11.107c.373 0 .684.124.933.373.25.249.383.569.4.96v1.173c-.017.391-.15.711-.4.96-.249.25-.56.374-.933.374s-.684-.125-.933-.374c-.25-.249-.383-.569-.4-.96V12.44c.017-.391.15-.711.4-.96.249-.249.56-.373.933-.373zm8 0c.373 0 .684.124.933.373.25.249.383.569.4.96v1.173c-.017.391-.15.711-.4.96-.249.25-.56.374-.933.374s-.684-.125-.933-.374c-.25-.249-.383-.569-.4-.96V12.44c.017-.391.15-.711.4-.96.249-.249.56-.373.933-.373z"/></svg>
           搜索教程
         </a>
