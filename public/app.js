@@ -251,8 +251,12 @@ function closeApiModal() {
 
 apiKeyBtn.addEventListener('click', openApiModal);
 apiModalClose.addEventListener('click', closeApiModal);
-apiModal.addEventListener('click', (e) => {
-  if (e.target === apiModal) closeApiModal();
+apiModal.addEventListener('mousedown', (e) => {
+  if (e.target === apiModal) apiModal._backdropMousedown = true;
+});
+apiModal.addEventListener('mouseup', (e) => {
+  if (e.target === apiModal && apiModal._backdropMousedown) closeApiModal();
+  apiModal._backdropMousedown = false;
 });
 
 configSelect.addEventListener('change', () => {
@@ -333,14 +337,18 @@ function closeEditModal() {
 }
 
 document.getElementById('editModalClose').addEventListener('click', closeEditModal);
-document.getElementById('editModal').addEventListener('click', (e) => {
-  if (e.target === document.getElementById('editModal')) closeEditModal();
+document.getElementById('editModal').addEventListener('mousedown', (e) => {
+  if (e.target === document.getElementById('editModal')) document.getElementById('editModal')._backdropMousedown = true;
+});
+document.getElementById('editModal').addEventListener('mouseup', (e) => {
+  if (e.target === document.getElementById('editModal') && document.getElementById('editModal')._backdropMousedown) closeEditModal();
+  document.getElementById('editModal')._backdropMousedown = false;
 });
 
 const FIELD_PROMPTS = {
   desc: `你是一个街舞教学专家。请为舞种"{style}"中的动作"{name}"生成一句中文描述（30-50字，说明动作特征和视觉效果）。只返回描述文字，不要其他内容。`,
-  tips: `你是一个街舞教学专家。请为舞种"{style}"中的动作"{name}"生成4条中文练习建议（每条10-15字）。以JSON数组格式返回，如 ["建议1","建议2","建议3","建议4"]。只返回JSON数组，不要其他内容。`,
-  svg: `你是一个街舞教学专家。请为舞种"{style}"中的动作"{name}"生成一个120x140 viewBox的SVG火柴人图示，用#f5e642描边，stroke-width 2.5，展示该动作的标志性姿态。只返回SVG代码，不要其他内容。`
+  tips: `你是一个街舞教学专家。请为舞种"{style}"中的动作"{name}"生成4条中文练习建议（每条10-15字）。动作描述：{desc}。以JSON数组格式返回，如 ["建议1","建议2","建议3","建议4"]。只返回JSON数组，不要其他内容。`,
+  svg: `你是一个街舞教学专家。请为舞种"{style}"中的动作"{name}"生成一个120x140 viewBox的SVG火柴人图示，用#f5e642描边，stroke-width 2.5，展示该动作的标志性姿态。动作描述：{desc}。只返回SVG代码，不要其他内容。`
 };
 
 document.querySelectorAll('.ai-field-btn').forEach(btn => {
@@ -351,7 +359,8 @@ document.querySelectorAll('.ai-field-btn').forEach(btn => {
     btn.textContent = '...';
     btn.disabled = true;
     try {
-      const prompt = FIELD_PROMPTS[field].replace('{name}', name).replace('{style}', currentStyle);
+      const desc = document.getElementById('editDesc').value.trim();
+      const prompt = FIELD_PROMPTS[field].replace('{name}', name).replace('{style}', currentStyle).replace('{desc}', desc);
       const raw = await callAI(prompt);
       if (field === 'desc') {
         document.getElementById('editDesc').value = raw.trim().replace(/^["']|["']$/g, '');
@@ -629,8 +638,12 @@ function closeAddMoveModal() {
 
 addMoveBtn.addEventListener('click', openAddMoveModal);
 addMoveModalClose.addEventListener('click', closeAddMoveModal);
-addMoveModal.addEventListener('click', (e) => {
-  if (e.target === addMoveModal) closeAddMoveModal();
+addMoveModal.addEventListener('mousedown', (e) => {
+  if (e.target === addMoveModal) addMoveModal._backdropMousedown = true;
+});
+addMoveModal.addEventListener('mouseup', (e) => {
+  if (e.target === addMoveModal && addMoveModal._backdropMousedown) closeAddMoveModal();
+  addMoveModal._backdropMousedown = false;
 });
 generateBtn.addEventListener('click', doGenerate);
 regenerateBtn.addEventListener('click', doGenerate);
