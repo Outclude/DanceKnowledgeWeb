@@ -19,8 +19,10 @@ function renderCards(style) {
   const moves = MOVES_DATA[style];
   if (!moves) return;
   cardsContainer.innerHTML = '';
+  const query = (document.getElementById('moveSearch').value || '').trim().toLowerCase();
 
   moves.forEach((move, index) => {
+    if (query && !move.name.toLowerCase().includes(query)) return;
     const card = document.createElement('div');
     card.className = 'card';
     card.style.animationDelay = `${index * 0.05}s`;
@@ -82,9 +84,25 @@ function renderCards(style) {
   });
 }
 
+// === Search ===
+document.getElementById('moveSearch').addEventListener('input', () => {
+  renderCards(currentStyle);
+});
+
+// === Compact Mode ===
+const compactCheckbox = document.getElementById('compactMode');
+compactCheckbox.checked = localStorage.getItem('compactMode') === '1';
+if (compactCheckbox.checked) cardsContainer.classList.add('compact');
+
+compactCheckbox.addEventListener('change', () => {
+  cardsContainer.classList.toggle('compact', compactCheckbox.checked);
+  localStorage.setItem('compactMode', compactCheckbox.checked ? '1' : '0');
+});
+
 // === Tab Switching ===
 function switchStyle(style) {
   currentStyle = style;
+  document.getElementById('moveSearch').value = '';
 
   tabs.forEach(tab => {
     tab.classList.toggle('active', tab.dataset.style === style);
@@ -449,10 +467,18 @@ function renderPreview(move) {
 }
 
 async function doGenerate() {
-  const name = document.getElementById('moveNameInput').value.trim();
+  const input = document.getElementById('moveNameInput').value.trim();
   const style = document.getElementById('moveStyleSelect').value;
-  if (!name) { alert('请输入动作英文名'); return; }
+  if (!input) { alert('请输入动作英文名'); return; }
 
+  const names = input.split('\n').map(s => s.trim()).filter(Boolean);
+
+  if (names.length >= 2) {
+    await doBatchGenerate(names, style);
+    return;
+  }
+
+  const name = names[0];
   generateActions.style.display = 'none';
   previewArea.style.display = 'none';
   generateLoading.style.display = 'flex';
@@ -470,6 +496,47 @@ async function doGenerate() {
     generateActions.style.display = 'flex';
     alert('生成失败：' + err.message);
   }
+}
+
+async function doBatchGenerate(names, style) {
+  generateActions.style.display = 'none';
+  previewArea.style.display = 'none';
+  generateLoading.style.display = 'flex';
+  generateLoading.querySelector('span').textContent = `批量生成中 (0/${names.length})...`;
+
+  let success = 0, failed = [];
+  for (let i = 0; i < names.length; i++) {
+    const name = names[i];
+    generateLoading.querySelector('span').textContent = `批量生成中 (${i + 1}/${names.length})：${name}`;
+    try {
+      const prompt = GENERATE_PROMPT.replace('{name}', name).replace('{style}', style);
+      const raw = await callAI(prompt);
+      const result = parseAIResponse(raw);
+      const move = { name, ...result, bilibiliQuery: `${style} ${name} 教学` };
+      const res = await fetch('/api/moves', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ style, move })
+      });
+      if (!res.ok) throw new Error('保存失败');
+      success++;
+    } catch (err) {
+      failed.push(name);
+    }
+  }
+
+  generateLoading.querySelector('span').textContent = 'AI 生成中...';
+  generateLoading.style.display = 'none';
+  generateActions.style.display = 'flex';
+
+  const freshData = await fetch('moves.json').then(r => r.json());
+  MOVES_DATA = freshData;
+  switchStyle(style);
+
+  let msg = `批量导入完成：成功 ${success} 个`;
+  if (failed.length) msg += `，失败 ${failed.length} 个（${failed.join('、')}）`;
+  alert(msg);
+  closeAddMoveModal();
 }
 
 async function doConfirmAdd() {

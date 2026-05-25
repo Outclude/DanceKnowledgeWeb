@@ -21,6 +21,10 @@
         <a href="#styles" data-style="hiphop">Hip-Hop</a>
       </div>
       <div class="nav-actions">
+        <label class="compact-toggle" title="极简模式">
+          <input type="checkbox" id="compactMode">
+          <span class="compact-toggle-label">极简</span>
+        </label>
         <button class="nav-add-btn" id="addMoveBtn" title="添加动作">+</button>
         <button class="nav-api-btn" id="apiKeyBtn" title="API Key 管理">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 2l-2 2m-7.61 7.61a5.5 5.5 0 1 1-7.78 7.78 5.5 5.5 0 0 1 7.78-7.78zm0 0L15.5 7.5m0 0l3 3L22 7l-3-3m-3.5 3.5L19 4"/></svg>
@@ -48,6 +52,9 @@
       <button class="tab active" data-style="locking">Locking</button>
       <button class="tab" data-style="popping">Popping</button>
       <button class="tab" data-style="hiphop">Hip-Hop</button>
+    </div>
+    <div class="search-bar">
+      <input type="text" id="moveSearch" placeholder="搜索动作..." autocomplete="off">
     </div>
     <div class="cards-container" id="cardsContainer"></div>
   </section>
@@ -100,7 +107,7 @@
       </div>
       <div class="modal-body">
         <div class="config-form">
-          <label>动作英文名<input type="text" id="moveNameInput" placeholder="如：Kick Ball Change" autocomplete="off"></label>
+          <label>动作英文名（每行一个，多行则批量导入）<textarea id="moveNameInput" rows="3" placeholder="如：Kick Ball Change&#10;Wrist Roll&#10;Skeeter Rabbit" autocomplete="off"></textarea></label>
           <label>舞种
             <select id="moveStyleSelect">
               <option value="locking">Locking</option>

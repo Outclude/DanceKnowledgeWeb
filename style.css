@@ -158,8 +158,34 @@ body::before {
 .tabs {
   display: flex;
   gap: 0;
-  margin-bottom: 3rem;
+  margin-bottom: 1.5rem;
   border-bottom: 2px solid var(--gray);
+}
+
+.search-bar {
+  margin-bottom: 2rem;
+}
+
+.search-bar input {
+  width: 100%;
+  max-width: 360px;
+  padding: 0.6rem 1rem;
+  border-radius: 8px;
+  border: 1px solid var(--gray);
+  background: rgba(255, 255, 255, 0.05);
+  color: var(--white);
+  font-size: 0.95rem;
+  font-family: var(--font-body);
+  outline: none;
+  transition: border-color 0.2s;
+}
+
+.search-bar input:focus {
+  border-color: var(--accent);
+}
+
+.search-bar input::placeholder {
+  color: rgba(255, 255, 255, 0.3);
 }
 
 .tab {
@@ -403,6 +429,43 @@ body::before {
 .card:nth-child(7) { animation-delay: 0.35s; }
 .card:nth-child(8) { animation-delay: 0.4s; }
 
+/* Compact Mode */
+.cards-container.compact {
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 0.8rem;
+}
+
+.compact .card {
+  padding: 0.8rem 1rem;
+}
+
+.compact .card .card-header {
+  margin-bottom: 0;
+}
+
+.compact .card .card-svg,
+.compact .card .card-desc,
+.compact .card .card-details {
+  display: none;
+}
+
+.compact .card .card-actions {
+  top: 0.4rem;
+  right: 0.4rem;
+}
+
+.compact .card.expanded .card-svg,
+.compact .card.expanded .card-desc {
+  display: block;
+}
+
+.compact .card.expanded .card-details {
+  display: block;
+  max-height: 400px;
+  opacity: 1;
+  margin-top: 1rem;
+}
+
 /* Footer */
 .footer {
   text-align: center;
@@ -418,6 +481,27 @@ body::before {
   display: flex;
   gap: 0.5rem;
   align-items: center;
+}
+
+.compact-toggle {
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+  cursor: pointer;
+  user-select: none;
+}
+
+.compact-toggle input {
+  accent-color: var(--accent);
+  width: 14px;
+  height: 14px;
+  cursor: pointer;
+}
+
+.compact-toggle-label {
+  font-size: 0.75rem;
+  color: var(--white);
+  opacity: 0.6;
 }
 
 .nav-add-btn {
