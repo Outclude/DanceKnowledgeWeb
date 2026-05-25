@@ -212,6 +212,29 @@ configSave.addEventListener('click', () => {
   renderConfigSelector();
 });
 
+document.getElementById('configExport').addEventListener('click', () => {
+  const data = loadConfigs();
+  const config = data.configs[data.activeIndex];
+  const str = btoa(unescape(encodeURIComponent(JSON.stringify(config))));
+  navigator.clipboard.writeText(str).then(() => alert('已复制到剪贴板'));
+});
+
+document.getElementById('configImport').addEventListener('click', () => {
+  const str = prompt('粘贴方案字符串：');
+  if (!str) return;
+  try {
+    const config = JSON.parse(decodeURIComponent(escape(atob(str.trim()))));
+    if (!config.name || !config.format) throw new Error('invalid');
+    const data = loadConfigs();
+    data.configs.push(config);
+    data.activeIndex = data.configs.length - 1;
+    saveConfigs(data);
+    renderConfigSelector();
+  } catch {
+    alert('导入失败：无效的方案字符串');
+  }
+});
+
 // === Edit & Delete Move ===
 let editingIndex = null;
 
