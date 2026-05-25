@@ -1,8 +1,11 @@
 const http = require('http');
 const fs = require('fs');
 const path = require('path');
+const crypto = require('crypto');
 
 const PORT = process.env.PORT || 2326;
+const PASSWORD = '1056788162';
+const tokens = new Set();
 
 const MIME_TYPES = {
   '.html': 'text/html',
@@ -15,8 +18,57 @@ const MIME_TYPES = {
   '.ico': 'image/x-icon'
 };
 
+function checkAuth(req) {
+  const auth = req.headers['authorization'];
+  if (!auth || !auth.startsWith('Bearer ')) return false;
+  return tokens.has(auth.slice(7));
+}
+
 const server = http.createServer((req, res) => {
+  // Auth endpoint
+  if (req.method === 'POST' && req.url === '/api/auth') {
+    let body = '';
+    req.on('data', chunk => { body += chunk; });
+    req.on('end', () => {
+      try {
+        const { password } = JSON.parse(body);
+        if (password === PASSWORD) {
+          const token = crypto.randomBytes(32).toString('hex');
+          tokens.add(token);
+          res.writeHead(200, { 'Content-Type': 'application/json' });
+          res.end(JSON.stringify({ ok: true, token }));
+        } else {
+          res.writeHead(401, { 'Content-Type': 'application/json' });
+          res.end(JSON.stringify({ error: '密码错误' }));
+        }
+      } catch (err) {
+        res.writeHead(400, { 'Content-Type': 'application/json' });
+        res.end(JSON.stringify({ error: err.message }));
+      }
+    });
+    return;
+  }
+
+  // Token validation endpoint
+  if (req.method === 'GET' && req.url === '/api/auth/check') {
+    if (checkAuth(req)) {
+      res.writeHead(200, { 'Content-Type': 'application/json' });
+      res.end(JSON.stringify({ ok: true }));
+    } else {
+      res.writeHead(401, { 'Content-Type': 'application/json' });
+      res.end(JSON.stringify({ error: '未登录' }));
+    }
+    return;
+  }
+
+  // Protected moves API
   if (req.method === 'POST' && req.url.startsWith('/api/moves')) {
+    if (!checkAuth(req)) {
+      res.writeHead(401, { 'Content-Type': 'application/json' });
+      res.end(JSON.stringify({ error: '未授权' }));
+      return;
+    }
+
     let body = '';
     req.on('data', chunk => { body += chunk; });
     req.on('end', () => {
@@ -53,11 +105,19 @@ const server = http.createServer((req, res) => {
     return;
   }
 
-  let filePath = path.join(__dirname, req.url === '/' ? 'index.html' : req.url);
-  let ext = path.extname(filePath);
+  // Route: / -> visit.html, /admin -> index.html
+  let filePath;
+  if (req.url === '/') {
+    filePath = path.join(__dirname, 'visit.html');
+  } else if (req.url === '/admin') {
+    filePath = path.join(__dirname, 'index.html');
+  } else {
+    filePath = path.join(__dirname, req.url);
+  }
 
+  let ext = path.extname(filePath);
   if (!ext) {
-    filePath += '/index.html';
+    filePath += '.html';
     ext = '.html';
   }
 

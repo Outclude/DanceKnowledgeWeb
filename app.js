@@ -1,3 +1,59 @@
+// === Auth ===
+let authToken = sessionStorage.getItem('authToken') || '';
+
+async function checkLogin() {
+  if (!authToken) return false;
+  try {
+    const res = await fetch('/api/auth/check', {
+      headers: { 'Authorization': `Bearer ${authToken}` }
+    });
+    return res.ok;
+  } catch { return false; }
+}
+
+async function doLogin() {
+  const pwd = document.getElementById('loginPassword').value;
+  const errEl = document.getElementById('loginError');
+  errEl.textContent = '';
+  try {
+    const res = await fetch('/api/auth', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ password: pwd })
+    });
+    const data = await res.json();
+    if (data.ok) {
+      authToken = data.token;
+      sessionStorage.setItem('authToken', authToken);
+      document.getElementById('loginOverlay').style.display = 'none';
+    } else {
+      errEl.textContent = data.error || '密码错误';
+    }
+  } catch (err) {
+    errEl.textContent = '登录失败：' + err.message;
+  }
+}
+
+(async () => {
+  const overlay = document.getElementById('loginOverlay');
+  if (await checkLogin()) {
+    overlay.style.display = 'none';
+  } else {
+    overlay.style.display = 'flex';
+    authToken = '';
+    sessionStorage.removeItem('authToken');
+  }
+})();
+
+document.getElementById('loginBtn').addEventListener('click', doLogin);
+document.getElementById('loginPassword').addEventListener('keydown', (e) => {
+  if (e.key === 'Enter') doLogin();
+});
+
+function authHeaders() {
+  return { 'Content-Type': 'application/json', 'Authorization': `Bearer ${authToken}` };
+}
+
 // === Dance Moves Data ===
 let MOVES_DATA = {};
 
@@ -16,9 +72,9 @@ let currentStyle = 'locking';
 
 // === Render Cards ===
 function renderCards(style) {
+  cardsContainer.innerHTML = '';
   const moves = MOVES_DATA[style];
   if (!moves) return;
-  cardsContainer.innerHTML = '';
   const query = (document.getElementById('moveSearch').value || '').trim().toLowerCase();
 
   moves.forEach((move, index) => {
@@ -329,7 +385,7 @@ document.getElementById('editSaveBtn').addEventListener('click', async () => {
   try {
     const res = await fetch('/api/moves/update', {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
+      headers: authHeaders(),
       body: JSON.stringify({ style: currentStyle, index: editingIndex, move: updated })
     });
     if (!res.ok) throw new Error('保存失败');
@@ -346,7 +402,7 @@ async function moveCard(index, dir) {
   try {
     const res = await fetch('/api/moves/reorder', {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
+      headers: authHeaders(),
       body: JSON.stringify({ style: currentStyle, from: index, to: newIndex })
     });
     if (!res.ok) throw new Error('移动失败');
@@ -363,7 +419,7 @@ async function deleteMove(index) {
   try {
     const res = await fetch('/api/moves/delete', {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
+      headers: authHeaders(),
       body: JSON.stringify({ style: currentStyle, index })
     });
     if (!res.ok) throw new Error('删除失败');
@@ -515,7 +571,7 @@ async function doBatchGenerate(names, style) {
       const move = { name, ...result, bilibiliQuery: `${style} ${name} 教学` };
       const res = await fetch('/api/moves', {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+        headers: authHeaders(),
         body: JSON.stringify({ style, move })
       });
       if (!res.ok) throw new Error('保存失败');
@@ -545,7 +601,7 @@ async function doConfirmAdd() {
   try {
     const res = await fetch('/api/moves', {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
+      headers: authHeaders(),
       body: JSON.stringify({ style: _style, move })
     });
     if (!res.ok) throw new Error('保存失败');
