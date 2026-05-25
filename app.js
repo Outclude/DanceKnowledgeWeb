@@ -1,503 +1,5 @@
 // === Dance Moves Data ===
-const MOVES_DATA = {
-  locking: [
-    {
-      name: "Lock",
-      nameZh: "锁定",
-      level: "初级",
-      desc: "Locking 的核心动作，手臂或腿部运动后突然冻结定格，制造强烈视觉停顿感。",
-      tips: ["手臂动作要先快后突停", "锁定瞬间全身收紧", "眼神配合动作方向", "配合音乐重拍落锁"],
-      svg: `<svg viewBox="0 0 120 140" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <circle cx="60" cy="20" r="10" stroke="#f5e642" stroke-width="2.5" stroke-linecap="round"/>
-        <line x1="60" y1="30" x2="60" y2="75" stroke="#f5e642" stroke-width="2.5" stroke-linecap="round"/>
-        <line x1="60" y1="45" x2="40" y2="35" stroke="#f5e642" stroke-width="2.5" stroke-linecap="round"/>
-        <line x1="40" y1="35" x2="35" y2="20" stroke="#f5e642" stroke-width="2.5" stroke-linecap="round"/>
-        <line x1="60" y1="45" x2="80" y2="35" stroke="#f5e642" stroke-width="2.5" stroke-linecap="round"/>
-        <line x1="80" y1="35" x2="85" y2="20" stroke="#f5e642" stroke-width="2.5" stroke-linecap="round"/>
-        <line x1="60" y1="75" x2="45" y2="105" stroke="#f5e642" stroke-width="2.5" stroke-linecap="round"/>
-        <line x1="45" y1="105" x2="42" y2="130" stroke="#f5e642" stroke-width="2.5" stroke-linecap="round"/>
-        <line x1="60" y1="75" x2="75" y2="105" stroke="#f5e642" stroke-width="2.5" stroke-linecap="round"/>
-        <line x1="75" y1="105" x2="78" y2="130" stroke="#f5e642" stroke-width="2.5" stroke-linecap="round"/>
-      </svg>`,
-      bilibiliQuery: "locking lock move 教学"
-    },
-    {
-      name: "Point",
-      nameZh: "指向",
-      level: "初级",
-      desc: "标志性的指向动作，一臂有力地向前伸直，配合重心转移，强调方向感和自信。",
-      tips: ["指尖到肩膀保持一条直线", "眼神跟随手指方向", "后手自然收到身后", "重心偏向指出方向"],
-      svg: `<svg viewBox="0 0 120 140" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <circle cx="55" cy="20" r="10" stroke="#f5e642" stroke-width="2.5" stroke-linecap="round"/>
-        <line x1="55" y1="30" x2="55" y2="75" stroke="#f5e642" stroke-width="2.5" stroke-linecap="round"/>
-        <line x1="55" y1="42" x2="95" y2="38" stroke="#f5e642" stroke-width="2.5" stroke-linecap="round"/>
-        <line x1="55" y1="42" x2="30" y2="55" stroke="#f5e642" stroke-width="2.5" stroke-linecap="round"/>
-        <line x1="30" y1="55" x2="20" y2="65" stroke="#f5e642" stroke-width="2.5" stroke-linecap="round"/>
-        <line x1="55" y1="75" x2="40" y2="105" stroke="#f5e642" stroke-width="2.5" stroke-linecap="round"/>
-        <line x1="40" y1="105" x2="38" y2="130" stroke="#f5e642" stroke-width="2.5" stroke-linecap="round"/>
-        <line x1="55" y1="75" x2="70" y2="105" stroke="#f5e642" stroke-width="2.5" stroke-linecap="round"/>
-        <line x1="70" y1="105" x2="72" y2="130" stroke="#f5e642" stroke-width="2.5" stroke-linecap="round"/>
-      </svg>`,
-      bilibiliQuery: "locking point move 教学"
-    },
-    {
-      name: "Wrist Roll",
-      nameZh: "手腕翻转",
-      level: "初级",
-      desc: "双手前伸，手腕做圆圈旋转，过渡动作中增加流畅感和节奏层次。",
-      tips: ["手腕放松画小圆", "双手可同步或交替转动", "保持手臂稳定不晃", "速度配合音乐节奏"],
-      svg: `<svg viewBox="0 0 120 140" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <circle cx="60" cy="20" r="10" stroke="#f5e642" stroke-width="2.5" stroke-linecap="round"/>
-        <line x1="60" y1="30" x2="60" y2="75" stroke="#f5e642" stroke-width="2.5" stroke-linecap="round"/>
-        <line x1="60" y1="45" x2="40" y2="50" stroke="#f5e642" stroke-width="2.5" stroke-linecap="round"/>
-        <line x1="40" y1="50" x2="30" y2="50" stroke="#f5e642" stroke-width="2.5" stroke-linecap="round"/>
-        <circle cx="25" cy="50" r="5" stroke="#f5e642" stroke-width="2" stroke-linecap="round" stroke-dasharray="3 2"/>
-        <line x1="60" y1="45" x2="80" y2="50" stroke="#f5e642" stroke-width="2.5" stroke-linecap="round"/>
-        <line x1="80" y1="50" x2="90" y2="50" stroke="#f5e642" stroke-width="2.5" stroke-linecap="round"/>
-        <circle cx="95" cy="50" r="5" stroke="#f5e642" stroke-width="2" stroke-linecap="round" stroke-dasharray="3 2"/>
-        <line x1="60" y1="75" x2="48" y2="105" stroke="#f5e642" stroke-width="2.5" stroke-linecap="round"/>
-        <line x1="48" y1="105" x2="45" y2="130" stroke="#f5e642" stroke-width="2.5" stroke-linecap="round"/>
-        <line x1="60" y1="75" x2="72" y2="105" stroke="#f5e642" stroke-width="2.5" stroke-linecap="round"/>
-        <line x1="72" y1="105" x2="75" y2="130" stroke="#f5e642" stroke-width="2.5" stroke-linecap="round"/>
-      </svg>`,
-      bilibiliQuery: "locking wrist roll 教学"
-    },
-    {
-      name: "Scooby Doo",
-      nameZh: "史酷比",
-      level: "中级",
-      desc: "双臂平行向前推出，身体后仰形成反向张力，充满卡通式的夸张表现力。",
-      tips: ["双臂平行且同时推出", "身体后仰但重心稳定", "推出时配合呼气", "可加入节奏停顿"],
-      svg: `<svg viewBox="0 0 120 140" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <circle cx="65" cy="22" r="10" stroke="#f5e642" stroke-width="2.5" stroke-linecap="round"/>
-        <path d="M65 32 Q70 55 68 78" stroke="#f5e642" stroke-width="2.5" stroke-linecap="round" fill="none"/>
-        <line x1="65" y1="45" x2="35" y2="42" stroke="#f5e642" stroke-width="2.5" stroke-linecap="round"/>
-        <line x1="35" y1="42" x2="15" y2="40" stroke="#f5e642" stroke-width="2.5" stroke-linecap="round"/>
-        <line x1="65" y1="50" x2="35" y2="50" stroke="#f5e642" stroke-width="2.5" stroke-linecap="round"/>
-        <line x1="35" y1="50" x2="15" y2="48" stroke="#f5e642" stroke-width="2.5" stroke-linecap="round"/>
-        <line x1="68" y1="78" x2="55" y2="105" stroke="#f5e642" stroke-width="2.5" stroke-linecap="round"/>
-        <line x1="55" y1="105" x2="50" y2="130" stroke="#f5e642" stroke-width="2.5" stroke-linecap="round"/>
-        <line x1="68" y1="78" x2="80" y2="105" stroke="#f5e642" stroke-width="2.5" stroke-linecap="round"/>
-        <line x1="80" y1="105" x2="83" y2="130" stroke="#f5e642" stroke-width="2.5" stroke-linecap="round"/>
-      </svg>`,
-      bilibiliQuery: "locking scooby doo move 教学"
-    },
-    {
-      name: "Leo Walk",
-      nameZh: "狮子步",
-      level: "中级",
-      desc: "侧身行走步伐，一腿抬起配合手臂节奏摆动，展现从容帅气的行走姿态。",
-      tips: ["侧身 45 度角前行", "抬腿时膝盖高于腰部", "手臂大幅度交替摆动", "步伐有弹性不僵硬"],
-      svg: `<svg viewBox="0 0 120 140" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <circle cx="55" cy="20" r="10" stroke="#f5e642" stroke-width="2.5" stroke-linecap="round"/>
-        <line x1="55" y1="30" x2="55" y2="72" stroke="#f5e642" stroke-width="2.5" stroke-linecap="round"/>
-        <line x1="55" y1="42" x2="75" y2="32" stroke="#f5e642" stroke-width="2.5" stroke-linecap="round"/>
-        <line x1="75" y1="32" x2="85" y2="25" stroke="#f5e642" stroke-width="2.5" stroke-linecap="round"/>
-        <line x1="55" y1="42" x2="35" y2="52" stroke="#f5e642" stroke-width="2.5" stroke-linecap="round"/>
-        <line x1="35" y1="52" x2="25" y2="60" stroke="#f5e642" stroke-width="2.5" stroke-linecap="round"/>
-        <line x1="55" y1="72" x2="45" y2="95" stroke="#f5e642" stroke-width="2.5" stroke-linecap="round"/>
-        <line x1="45" y1="95" x2="40" y2="130" stroke="#f5e642" stroke-width="2.5" stroke-linecap="round"/>
-        <line x1="55" y1="72" x2="75" y2="80" stroke="#f5e642" stroke-width="2.5" stroke-linecap="round"/>
-        <line x1="75" y1="80" x2="80" y2="65" stroke="#f5e642" stroke-width="2.5" stroke-linecap="round"/>
-      </svg>`,
-      bilibiliQuery: "locking leo walk 教学"
-    },
-    {
-      name: "Funky Chicken",
-      nameZh: "疯克鸡",
-      level: "中级",
-      desc: "双肘外展上下抖动模仿鸡翅膀，搞怪但极具 Funk 精神的经典动作。",
-      tips: ["双肘抬至肩膀高度", "快速上下抖动手肘", "身体配合上下律动", "表情夸张增加效果"],
-      svg: `<svg viewBox="0 0 120 140" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <circle cx="60" cy="20" r="10" stroke="#f5e642" stroke-width="2.5" stroke-linecap="round"/>
-        <line x1="60" y1="30" x2="60" y2="75" stroke="#f5e642" stroke-width="2.5" stroke-linecap="round"/>
-        <line x1="60" y1="42" x2="40" y2="38" stroke="#f5e642" stroke-width="2.5" stroke-linecap="round"/>
-        <line x1="40" y1="38" x2="30" y2="48" stroke="#f5e642" stroke-width="2.5" stroke-linecap="round"/>
-        <line x1="30" y1="48" x2="32" y2="55" stroke="#f5e642" stroke-width="2.5" stroke-linecap="round"/>
-        <line x1="60" y1="42" x2="80" y2="38" stroke="#f5e642" stroke-width="2.5" stroke-linecap="round"/>
-        <line x1="80" y1="38" x2="90" y2="48" stroke="#f5e642" stroke-width="2.5" stroke-linecap="round"/>
-        <line x1="90" y1="48" x2="88" y2="55" stroke="#f5e642" stroke-width="2.5" stroke-linecap="round"/>
-        <path d="M35 42 L30 36 M85 42 L90 36" stroke="#f5e642" stroke-width="1.5" stroke-linecap="round" stroke-dasharray="2 2"/>
-        <line x1="60" y1="75" x2="48" y2="105" stroke="#f5e642" stroke-width="2.5" stroke-linecap="round"/>
-        <line x1="48" y1="105" x2="45" y2="130" stroke="#f5e642" stroke-width="2.5" stroke-linecap="round"/>
-        <line x1="60" y1="75" x2="72" y2="105" stroke="#f5e642" stroke-width="2.5" stroke-linecap="round"/>
-        <line x1="72" y1="105" x2="75" y2="130" stroke="#f5e642" stroke-width="2.5" stroke-linecap="round"/>
-      </svg>`,
-      bilibiliQuery: "locking funky chicken 教学"
-    },
-    {
-      name: "Pimp Walk",
-      nameZh: "大佬步",
-      level: "中级",
-      desc: "昂首挺胸的夸张走路方式，一手叉腰大步迈腿，展现绝对自信和舞台统治力。",
-      tips: ["挺胸抬头目视前方", "一手叉腰一手自然摆", "步伐大且有停顿感", "肩膀可左右交替倾斜"],
-      svg: `<svg viewBox="0 0 120 140" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <circle cx="55" cy="18" r="10" stroke="#f5e642" stroke-width="2.5" stroke-linecap="round"/>
-        <line x1="55" y1="28" x2="55" y2="75" stroke="#f5e642" stroke-width="2.5" stroke-linecap="round"/>
-        <line x1="55" y1="42" x2="42" y2="55" stroke="#f5e642" stroke-width="2.5" stroke-linecap="round"/>
-        <line x1="42" y1="55" x2="48" y2="68" stroke="#f5e642" stroke-width="2.5" stroke-linecap="round"/>
-        <line x1="55" y1="42" x2="72" y2="48" stroke="#f5e642" stroke-width="2.5" stroke-linecap="round"/>
-        <line x1="72" y1="48" x2="80" y2="38" stroke="#f5e642" stroke-width="2.5" stroke-linecap="round"/>
-        <line x1="55" y1="75" x2="35" y2="100" stroke="#f5e642" stroke-width="2.5" stroke-linecap="round"/>
-        <line x1="35" y1="100" x2="30" y2="130" stroke="#f5e642" stroke-width="2.5" stroke-linecap="round"/>
-        <line x1="55" y1="75" x2="78" y2="95" stroke="#f5e642" stroke-width="2.5" stroke-linecap="round"/>
-        <line x1="78" y1="95" x2="85" y2="130" stroke="#f5e642" stroke-width="2.5" stroke-linecap="round"/>
-      </svg>`,
-      bilibiliQuery: "locking pimp walk 教学"
-    },
-    {
-      name: "Stop & Go",
-      nameZh: "停走",
-      level: "高级",
-      desc: "运动中突然急停再启动，一脚踏出配合双臂前后交替，节奏控制力的终极体现。",
-      tips: ["急停要干脆利落", "启动时爆发力要强", "双臂和腿配合协调", "练习不同速度的切换"],
-      svg: `<svg viewBox="0 0 120 140" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <circle cx="58" cy="20" r="10" stroke="#f5e642" stroke-width="2.5" stroke-linecap="round"/>
-        <line x1="58" y1="30" x2="58" y2="75" stroke="#f5e642" stroke-width="2.5" stroke-linecap="round"/>
-        <line x1="58" y1="42" x2="82" y2="38" stroke="#f5e642" stroke-width="2.5" stroke-linecap="round"/>
-        <line x1="82" y1="38" x2="90" y2="30" stroke="#f5e642" stroke-width="2.5" stroke-linecap="round"/>
-        <line x1="58" y1="45" x2="35" y2="52" stroke="#f5e642" stroke-width="2.5" stroke-linecap="round"/>
-        <line x1="35" y1="52" x2="28" y2="62" stroke="#f5e642" stroke-width="2.5" stroke-linecap="round"/>
-        <line x1="58" y1="75" x2="42" y2="100" stroke="#f5e642" stroke-width="2.5" stroke-linecap="round"/>
-        <line x1="42" y1="100" x2="38" y2="130" stroke="#f5e642" stroke-width="2.5" stroke-linecap="round"/>
-        <line x1="58" y1="75" x2="80" y2="90" stroke="#f5e642" stroke-width="2.5" stroke-linecap="round"/>
-        <line x1="80" y1="90" x2="88" y2="120" stroke="#f5e642" stroke-width="2.5" stroke-linecap="round"/>
-      </svg>`,
-      bilibiliQuery: "locking stop and go 教学"
-    }
-  ],
-  popping: [
-    {
-      name: "Hit / Pop",
-      nameZh: "弹击",
-      level: "初级",
-      desc: "Popping 核心技术，通过肌肉瞬间收缩和释放产生视觉上的弹跳效果。",
-      tips: ["胸、臂、腿同时收缩", "收缩时间极短如触电", "放松和紧绷对比要大", "先慢练单个部位再组合"],
-      svg: `<svg viewBox="0 0 120 140" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <circle cx="60" cy="20" r="10" stroke="#f5e642" stroke-width="2.5" stroke-linecap="round"/>
-        <line x1="60" y1="30" x2="60" y2="75" stroke="#f5e642" stroke-width="2.5" stroke-linecap="round"/>
-        <line x1="60" y1="42" x2="42" y2="48" stroke="#f5e642" stroke-width="2.5" stroke-linecap="round"/>
-        <line x1="42" y1="48" x2="35" y2="55" stroke="#f5e642" stroke-width="2.5" stroke-linecap="round"/>
-        <line x1="60" y1="42" x2="78" y2="48" stroke="#f5e642" stroke-width="2.5" stroke-linecap="round"/>
-        <line x1="78" y1="48" x2="85" y2="55" stroke="#f5e642" stroke-width="2.5" stroke-linecap="round"/>
-        <line x1="60" y1="75" x2="50" y2="105" stroke="#f5e642" stroke-width="2.5" stroke-linecap="round"/>
-        <line x1="50" y1="105" x2="48" y2="130" stroke="#f5e642" stroke-width="2.5" stroke-linecap="round"/>
-        <line x1="60" y1="75" x2="70" y2="105" stroke="#f5e642" stroke-width="2.5" stroke-linecap="round"/>
-        <line x1="70" y1="105" x2="72" y2="130" stroke="#f5e642" stroke-width="2.5" stroke-linecap="round"/>
-        <line x1="52" y1="35" x2="48" y2="32" stroke="#f5e642" stroke-width="1.5" stroke-linecap="round"/>
-        <line x1="68" y1="35" x2="72" y2="32" stroke="#f5e642" stroke-width="1.5" stroke-linecap="round"/>
-        <line x1="55" y1="70" x2="52" y2="73" stroke="#f5e642" stroke-width="1.5" stroke-linecap="round"/>
-        <line x1="65" y1="70" x2="68" y2="73" stroke="#f5e642" stroke-width="1.5" stroke-linecap="round"/>
-      </svg>`,
-      bilibiliQuery: "popping hit pop 教学 beginner"
-    },
-    {
-      name: "Fresno",
-      nameZh: "弗雷斯诺",
-      level: "初级",
-      desc: "双手握拳交替前后摆动配合步伐移动，Popping 基础步伐之一。",
-      tips: ["握拳前后交替摆", "步伐和手臂节奏同步", "每步落地配合一次 Pop", "保持重心平稳下沉"],
-      svg: `<svg viewBox="0 0 120 140" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <circle cx="60" cy="20" r="10" stroke="#f5e642" stroke-width="2.5" stroke-linecap="round"/>
-        <line x1="60" y1="30" x2="60" y2="75" stroke="#f5e642" stroke-width="2.5" stroke-linecap="round"/>
-        <line x1="60" y1="42" x2="40" y2="45" stroke="#f5e642" stroke-width="2.5" stroke-linecap="round"/>
-        <line x1="40" y1="45" x2="30" y2="38" stroke="#f5e642" stroke-width="2.5" stroke-linecap="round"/>
-        <circle cx="28" cy="36" r="3" stroke="#f5e642" stroke-width="2" stroke-linecap="round"/>
-        <line x1="60" y1="42" x2="80" y2="50" stroke="#f5e642" stroke-width="2.5" stroke-linecap="round"/>
-        <line x1="80" y1="50" x2="88" y2="58" stroke="#f5e642" stroke-width="2.5" stroke-linecap="round"/>
-        <circle cx="90" cy="60" r="3" stroke="#f5e642" stroke-width="2" stroke-linecap="round"/>
-        <line x1="60" y1="75" x2="45" y2="100" stroke="#f5e642" stroke-width="2.5" stroke-linecap="round"/>
-        <line x1="45" y1="100" x2="40" y2="130" stroke="#f5e642" stroke-width="2.5" stroke-linecap="round"/>
-        <line x1="60" y1="75" x2="75" y2="100" stroke="#f5e642" stroke-width="2.5" stroke-linecap="round"/>
-        <line x1="75" y1="100" x2="80" y2="130" stroke="#f5e642" stroke-width="2.5" stroke-linecap="round"/>
-      </svg>`,
-      bilibiliQuery: "popping fresno 教学"
-    },
-    {
-      name: "Boogaloo",
-      nameZh: "布加洛",
-      level: "中级",
-      desc: "脊柱呈 S 形波浪弯曲，全身流动感强，膝盖微弯保持松弛律动。",
-      tips: ["脊柱逐节活动像蛇", "膝盖始终微曲不锁死", "肩臀可反方向扭动", "整体动作流畅不卡顿"],
-      svg: `<svg viewBox="0 0 120 140" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <circle cx="60" cy="18" r="10" stroke="#f5e642" stroke-width="2.5" stroke-linecap="round"/>
-        <path d="M60 28 Q52 42 60 55 Q68 68 60 80" stroke="#f5e642" stroke-width="2.5" stroke-linecap="round" fill="none"/>
-        <line x1="56" y1="38" x2="38" y2="42" stroke="#f5e642" stroke-width="2.5" stroke-linecap="round"/>
-        <line x1="38" y1="42" x2="30" y2="50" stroke="#f5e642" stroke-width="2.5" stroke-linecap="round"/>
-        <line x1="64" y1="38" x2="82" y2="35" stroke="#f5e642" stroke-width="2.5" stroke-linecap="round"/>
-        <line x1="82" y1="35" x2="90" y2="42" stroke="#f5e642" stroke-width="2.5" stroke-linecap="round"/>
-        <line x1="60" y1="80" x2="48" y2="105" stroke="#f5e642" stroke-width="2.5" stroke-linecap="round"/>
-        <line x1="48" y1="105" x2="45" y2="130" stroke="#f5e642" stroke-width="2.5" stroke-linecap="round"/>
-        <line x1="60" y1="80" x2="72" y2="105" stroke="#f5e642" stroke-width="2.5" stroke-linecap="round"/>
-        <line x1="72" y1="105" x2="75" y2="130" stroke="#f5e642" stroke-width="2.5" stroke-linecap="round"/>
-      </svg>`,
-      bilibiliQuery: "boogaloo dance 教学"
-    },
-    {
-      name: "Dimestop",
-      nameZh: "急停",
-      level: "中级",
-      desc: "运动中瞬间全身冻结定格，像按下暂停键，强调肌肉控制力。",
-      tips: ["停止要毫无预兆", "全身同时锁定不是先后", "保持呼吸不要憋气", "停在各种姿势都可以"],
-      svg: `<svg viewBox="0 0 120 140" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <circle cx="58" cy="20" r="10" stroke="#f5e642" stroke-width="2.5" stroke-linecap="round"/>
-        <line x1="58" y1="30" x2="58" y2="75" stroke="#f5e642" stroke-width="2.5" stroke-linecap="round"/>
-        <line x1="58" y1="42" x2="85" y2="35" stroke="#f5e642" stroke-width="2.5" stroke-linecap="round"/>
-        <line x1="58" y1="45" x2="35" y2="50" stroke="#f5e642" stroke-width="2.5" stroke-linecap="round"/>
-        <line x1="35" y1="50" x2="30" y2="58" stroke="#f5e642" stroke-width="2.5" stroke-linecap="round"/>
-        <line x1="58" y1="75" x2="48" y2="100" stroke="#f5e642" stroke-width="2.5" stroke-linecap="round"/>
-        <line x1="48" y1="100" x2="45" y2="130" stroke="#f5e642" stroke-width="2.5" stroke-linecap="round"/>
-        <line x1="58" y1="75" x2="72" y2="100" stroke="#f5e642" stroke-width="2.5" stroke-linecap="round"/>
-        <line x1="72" y1="100" x2="75" y2="130" stroke="#f5e642" stroke-width="2.5" stroke-linecap="round"/>
-        <line x1="82" y1="30" x2="88" y2="28" stroke="#f5e642" stroke-width="1.5" stroke-linecap="round"/>
-        <line x1="86" y1="37" x2="92" y2="38" stroke="#f5e642" stroke-width="1.5" stroke-linecap="round"/>
-      </svg>`,
-      bilibiliQuery: "popping dimestop 教学"
-    },
-    {
-      name: "Tutting",
-      nameZh: "图坦",
-      level: "中级",
-      desc: "双臂弯成直角几何形状，像埃及壁画人物，强调角度精准和线条美感。",
-      tips: ["所有角度严格 90 度", "手指并拢线条干净", "切换角度要快而准", "可以加入手指 Tutting"],
-      svg: `<svg viewBox="0 0 120 140" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <circle cx="60" cy="20" r="10" stroke="#f5e642" stroke-width="2.5" stroke-linecap="round"/>
-        <line x1="60" y1="30" x2="60" y2="75" stroke="#f5e642" stroke-width="2.5" stroke-linecap="round"/>
-        <line x1="60" y1="40" x2="40" y2="40" stroke="#f5e642" stroke-width="2.5" stroke-linecap="round"/>
-        <line x1="40" y1="40" x2="40" y2="20" stroke="#f5e642" stroke-width="2.5" stroke-linecap="round"/>
-        <line x1="60" y1="40" x2="80" y2="40" stroke="#f5e642" stroke-width="2.5" stroke-linecap="round"/>
-        <line x1="80" y1="40" x2="80" y2="60" stroke="#f5e642" stroke-width="2.5" stroke-linecap="round"/>
-        <line x1="60" y1="75" x2="48" y2="105" stroke="#f5e642" stroke-width="2.5" stroke-linecap="round"/>
-        <line x1="48" y1="105" x2="45" y2="130" stroke="#f5e642" stroke-width="2.5" stroke-linecap="round"/>
-        <line x1="60" y1="75" x2="72" y2="105" stroke="#f5e642" stroke-width="2.5" stroke-linecap="round"/>
-        <line x1="72" y1="105" x2="75" y2="130" stroke="#f5e642" stroke-width="2.5" stroke-linecap="round"/>
-      </svg>`,
-      bilibiliQuery: "tutting dance 教学"
-    },
-    {
-      name: "Gliding",
-      nameZh: "滑步",
-      level: "高级",
-      desc: "一腿滑出，重心低，制造在地面无摩擦滑行的视觉错觉。",
-      tips: ["重心腿弯曲支撑", "滑出腿贴地推送", "上身保持平稳不晃", "可组合侧滑和后滑"],
-      svg: `<svg viewBox="0 0 120 140" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <circle cx="50" cy="25" r="10" stroke="#f5e642" stroke-width="2.5" stroke-linecap="round"/>
-        <line x1="50" y1="35" x2="50" y2="78" stroke="#f5e642" stroke-width="2.5" stroke-linecap="round"/>
-        <line x1="50" y1="48" x2="35" y2="55" stroke="#f5e642" stroke-width="2.5" stroke-linecap="round"/>
-        <line x1="35" y1="55" x2="28" y2="62" stroke="#f5e642" stroke-width="2.5" stroke-linecap="round"/>
-        <line x1="50" y1="48" x2="65" y2="55" stroke="#f5e642" stroke-width="2.5" stroke-linecap="round"/>
-        <line x1="65" y1="55" x2="72" y2="62" stroke="#f5e642" stroke-width="2.5" stroke-linecap="round"/>
-        <line x1="50" y1="78" x2="40" y2="105" stroke="#f5e642" stroke-width="2.5" stroke-linecap="round"/>
-        <line x1="40" y1="105" x2="38" y2="130" stroke="#f5e642" stroke-width="2.5" stroke-linecap="round"/>
-        <line x1="50" y1="78" x2="80" y2="100" stroke="#f5e642" stroke-width="2.5" stroke-linecap="round"/>
-        <line x1="80" y1="100" x2="100" y2="130" stroke="#f5e642" stroke-width="2.5" stroke-linecap="round"/>
-        <path d="M95 128 L100 130 L95 132" stroke="#f5e642" stroke-width="1.5" stroke-linecap="round" fill="none"/>
-      </svg>`,
-      bilibiliQuery: "popping gliding 教学"
-    },
-    {
-      name: "Waving",
-      nameZh: "电流波",
-      level: "高级",
-      desc: "手臂从指尖到肩膀呈连续波浪弧线传递，如电流流经身体。",
-      tips: ["从指尖逐关节启动", "每个关节独立控制", "速度均匀不跳过关节", "可扩展到全身 Body Wave"],
-      svg: `<svg viewBox="0 0 120 140" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <circle cx="60" cy="20" r="10" stroke="#f5e642" stroke-width="2.5" stroke-linecap="round"/>
-        <line x1="60" y1="30" x2="60" y2="75" stroke="#f5e642" stroke-width="2.5" stroke-linecap="round"/>
-        <path d="M60 42 Q50 38 42 42 Q34 46 26 42 Q18 38 12 42" stroke="#f5e642" stroke-width="2.5" stroke-linecap="round" fill="none"/>
-        <path d="M60 42 Q70 46 78 42 Q86 38 94 42 Q102 46 108 42" stroke="#f5e642" stroke-width="2.5" stroke-linecap="round" fill="none"/>
-        <line x1="60" y1="75" x2="50" y2="105" stroke="#f5e642" stroke-width="2.5" stroke-linecap="round"/>
-        <line x1="50" y1="105" x2="48" y2="130" stroke="#f5e642" stroke-width="2.5" stroke-linecap="round"/>
-        <line x1="60" y1="75" x2="70" y2="105" stroke="#f5e642" stroke-width="2.5" stroke-linecap="round"/>
-        <line x1="70" y1="105" x2="72" y2="130" stroke="#f5e642" stroke-width="2.5" stroke-linecap="round"/>
-      </svg>`,
-      bilibiliQuery: "arm wave popping 教学"
-    },
-    {
-      name: "Robot",
-      nameZh: "机器人",
-      level: "初级",
-      desc: "四肢呈直角机械姿势，动作生硬间断，模仿机器人的关节运动方式。",
-      tips: ["每个动作之间要有停顿", "关节只做直角运动", "头部转动也是机械式", "表情僵硬配合角色"],
-      svg: `<svg viewBox="0 0 120 140" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <rect x="50" y="10" width="20" height="20" stroke="#f5e642" stroke-width="2.5" stroke-linecap="round" fill="none"/>
-        <line x1="60" y1="30" x2="60" y2="78" stroke="#f5e642" stroke-width="2.5" stroke-linecap="round"/>
-        <line x1="60" y1="40" x2="40" y2="40" stroke="#f5e642" stroke-width="2.5" stroke-linecap="round"/>
-        <line x1="40" y1="40" x2="40" y2="60" stroke="#f5e642" stroke-width="2.5" stroke-linecap="round"/>
-        <line x1="60" y1="40" x2="80" y2="40" stroke="#f5e642" stroke-width="2.5" stroke-linecap="round"/>
-        <line x1="80" y1="40" x2="80" y2="60" stroke="#f5e642" stroke-width="2.5" stroke-linecap="round"/>
-        <line x1="60" y1="78" x2="45" y2="78" stroke="#f5e642" stroke-width="2.5" stroke-linecap="round"/>
-        <line x1="45" y1="78" x2="45" y2="130" stroke="#f5e642" stroke-width="2.5" stroke-linecap="round"/>
-        <line x1="60" y1="78" x2="75" y2="78" stroke="#f5e642" stroke-width="2.5" stroke-linecap="round"/>
-        <line x1="75" y1="78" x2="75" y2="130" stroke="#f5e642" stroke-width="2.5" stroke-linecap="round"/>
-        <line x1="65" y1="17" x2="68" y2="14" stroke="#f5e642" stroke-width="2" stroke-linecap="round"/>
-      </svg>`,
-      bilibiliQuery: "robot dance 教学 popping"
-    }
-  ],
-  hiphop: [
-    {
-      name: "Bounce",
-      nameZh: "律动",
-      level: "初级",
-      desc: "Hip-Hop 最基础的律动，双膝弯曲随节拍上下弹动，是所有动作的根基。",
-      tips: ["膝盖放松自然弯曲", "跟随音乐鼓点下沉", "上身保持放松跟随", "找到自己舒服的幅度"],
-      svg: `<svg viewBox="0 0 120 140" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <circle cx="60" cy="25" r="10" stroke="#f5e642" stroke-width="2.5" stroke-linecap="round"/>
-        <line x1="60" y1="35" x2="60" y2="78" stroke="#f5e642" stroke-width="2.5" stroke-linecap="round"/>
-        <line x1="60" y1="48" x2="42" y2="55" stroke="#f5e642" stroke-width="2.5" stroke-linecap="round"/>
-        <line x1="42" y1="55" x2="38" y2="65" stroke="#f5e642" stroke-width="2.5" stroke-linecap="round"/>
-        <line x1="60" y1="48" x2="78" y2="55" stroke="#f5e642" stroke-width="2.5" stroke-linecap="round"/>
-        <line x1="78" y1="55" x2="82" y2="65" stroke="#f5e642" stroke-width="2.5" stroke-linecap="round"/>
-        <line x1="60" y1="78" x2="50" y2="100" stroke="#f5e642" stroke-width="2.5" stroke-linecap="round"/>
-        <line x1="50" y1="100" x2="48" y2="130" stroke="#f5e642" stroke-width="2.5" stroke-linecap="round"/>
-        <line x1="60" y1="78" x2="70" y2="100" stroke="#f5e642" stroke-width="2.5" stroke-linecap="round"/>
-        <line x1="70" y1="100" x2="72" y2="130" stroke="#f5e642" stroke-width="2.5" stroke-linecap="round"/>
-        <path d="M55 82 L60 86 L65 82" stroke="#f5e642" stroke-width="1.5" stroke-linecap="round" fill="none"/>
-      </svg>`,
-      bilibiliQuery: "hip hop bounce 教学 beginner"
-    },
-    {
-      name: "Running Man",
-      nameZh: "跑步机",
-      level: "初级",
-      desc: "一腿前踢一腿后蹬，双臂对应摆动，模拟原地跑步的经典 Hip-Hop 步伐。",
-      tips: ["前脚落地要有力", "后脚向后滑出", "手臂自然对侧摆动", "保持节奏均匀不赶"],
-      svg: `<svg viewBox="0 0 120 140" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <circle cx="55" cy="18" r="10" stroke="#f5e642" stroke-width="2.5" stroke-linecap="round"/>
-        <line x1="55" y1="28" x2="55" y2="72" stroke="#f5e642" stroke-width="2.5" stroke-linecap="round"/>
-        <line x1="55" y1="40" x2="72" y2="32" stroke="#f5e642" stroke-width="2.5" stroke-linecap="round"/>
-        <line x1="72" y1="32" x2="80" y2="28" stroke="#f5e642" stroke-width="2.5" stroke-linecap="round"/>
-        <line x1="55" y1="40" x2="38" y2="50" stroke="#f5e642" stroke-width="2.5" stroke-linecap="round"/>
-        <line x1="38" y1="50" x2="30" y2="55" stroke="#f5e642" stroke-width="2.5" stroke-linecap="round"/>
-        <line x1="55" y1="72" x2="75" y2="85" stroke="#f5e642" stroke-width="2.5" stroke-linecap="round"/>
-        <line x1="75" y1="85" x2="80" y2="75" stroke="#f5e642" stroke-width="2.5" stroke-linecap="round"/>
-        <line x1="55" y1="72" x2="35" y2="90" stroke="#f5e642" stroke-width="2.5" stroke-linecap="round"/>
-        <line x1="35" y1="90" x2="25" y2="120" stroke="#f5e642" stroke-width="2.5" stroke-linecap="round"/>
-      </svg>`,
-      bilibiliQuery: "running man dance 教学"
-    },
-    {
-      name: "Cabbage Patch",
-      nameZh: "卷心菜",
-      level: "初级",
-      desc: "双臂在胸前画圆，身体跟随手臂方向摇摆律动，经典的 Old School 动作。",
-      tips: ["双臂握拳画圆圈", "身体跟随圆圈方向晃", "圆圈可大可小", "节奏跟紧鼓点"],
-      svg: `<svg viewBox="0 0 120 140" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <circle cx="60" cy="20" r="10" stroke="#f5e642" stroke-width="2.5" stroke-linecap="round"/>
-        <line x1="60" y1="30" x2="60" y2="75" stroke="#f5e642" stroke-width="2.5" stroke-linecap="round"/>
-        <path d="M45 40 Q38 50 45 58 Q52 65 45 40" stroke="#f5e642" stroke-width="2.5" stroke-linecap="round" fill="none"/>
-        <path d="M75 40 Q82 50 75 58 Q68 65 75 40" stroke="#f5e642" stroke-width="2.5" stroke-linecap="round" fill="none"/>
-        <line x1="60" y1="75" x2="48" y2="105" stroke="#f5e642" stroke-width="2.5" stroke-linecap="round"/>
-        <line x1="48" y1="105" x2="45" y2="130" stroke="#f5e642" stroke-width="2.5" stroke-linecap="round"/>
-        <line x1="60" y1="75" x2="72" y2="105" stroke="#f5e642" stroke-width="2.5" stroke-linecap="round"/>
-        <line x1="72" y1="105" x2="75" y2="130" stroke="#f5e642" stroke-width="2.5" stroke-linecap="round"/>
-      </svg>`,
-      bilibiliQuery: "cabbage patch dance 教学"
-    },
-    {
-      name: "Harlem Shake",
-      nameZh: "哈林摇",
-      level: "中级",
-      desc: "肩膀大幅抖动，手臂松散甩动，全身松弛地跟随节奏震动，充满派对氛围。",
-      tips: ["肩膀快速前后抖动", "手臂完全放松像面条", "膝盖配合上下律动", "越放松效果越好"],
-      svg: `<svg viewBox="0 0 120 140" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <circle cx="60" cy="20" r="10" stroke="#f5e642" stroke-width="2.5" stroke-linecap="round"/>
-        <line x1="60" y1="30" x2="60" y2="75" stroke="#f5e642" stroke-width="2.5" stroke-linecap="round"/>
-        <path d="M60 40 Q48 42 42 50 Q38 58 35 65" stroke="#f5e642" stroke-width="2.5" stroke-linecap="round" fill="none"/>
-        <path d="M60 40 Q72 38 78 45 Q84 52 88 60" stroke="#f5e642" stroke-width="2.5" stroke-linecap="round" fill="none"/>
-        <line x1="56" y1="35" x2="53" y2="32" stroke="#f5e642" stroke-width="1.5" stroke-linecap="round"/>
-        <line x1="64" y1="35" x2="67" y2="32" stroke="#f5e642" stroke-width="1.5" stroke-linecap="round"/>
-        <line x1="60" y1="75" x2="48" y2="105" stroke="#f5e642" stroke-width="2.5" stroke-linecap="round"/>
-        <line x1="48" y1="105" x2="45" y2="130" stroke="#f5e642" stroke-width="2.5" stroke-linecap="round"/>
-        <line x1="60" y1="75" x2="72" y2="105" stroke="#f5e642" stroke-width="2.5" stroke-linecap="round"/>
-        <line x1="72" y1="105" x2="75" y2="130" stroke="#f5e642" stroke-width="2.5" stroke-linecap="round"/>
-      </svg>`,
-      bilibiliQuery: "harlem shake dance 教学 original"
-    },
-    {
-      name: "Prep",
-      nameZh: "预备步",
-      level: "初级",
-      desc: "双臂交叉于胸前，重心交替左右转移，简单但极具节奏表现力的基础动作。",
-      tips: ["手臂在胸前交叉", "重心左右交替转移", "交叉时配合下沉", "加入转体增加变化"],
-      svg: `<svg viewBox="0 0 120 140" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <circle cx="60" cy="20" r="10" stroke="#f5e642" stroke-width="2.5" stroke-linecap="round"/>
-        <line x1="60" y1="30" x2="60" y2="75" stroke="#f5e642" stroke-width="2.5" stroke-linecap="round"/>
-        <line x1="60" y1="42" x2="45" y2="50" stroke="#f5e642" stroke-width="2.5" stroke-linecap="round"/>
-        <line x1="45" y1="50" x2="70" y2="58" stroke="#f5e642" stroke-width="2.5" stroke-linecap="round"/>
-        <line x1="60" y1="42" x2="75" y2="50" stroke="#f5e642" stroke-width="2.5" stroke-linecap="round"/>
-        <line x1="75" y1="50" x2="50" y2="58" stroke="#f5e642" stroke-width="2.5" stroke-linecap="round"/>
-        <line x1="60" y1="75" x2="48" y2="105" stroke="#f5e642" stroke-width="2.5" stroke-linecap="round"/>
-        <line x1="48" y1="105" x2="45" y2="130" stroke="#f5e642" stroke-width="2.5" stroke-linecap="round"/>
-        <line x1="60" y1="75" x2="72" y2="105" stroke="#f5e642" stroke-width="2.5" stroke-linecap="round"/>
-        <line x1="72" y1="105" x2="75" y2="130" stroke="#f5e642" stroke-width="2.5" stroke-linecap="round"/>
-      </svg>`,
-      bilibiliQuery: "hip hop prep step 教学"
-    },
-    {
-      name: "Smurf",
-      nameZh: "蓝精灵",
-      level: "中级",
-      desc: "双膝外开下蹲，手臂上举欢快摆动，充满活力和派对感的经典动作。",
-      tips: ["膝盖向外打开下蹲", "手臂上举左右摆动", "保持欢快的表情", "下蹲幅度配合节奏"],
-      svg: `<svg viewBox="0 0 120 140" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <circle cx="60" cy="20" r="10" stroke="#f5e642" stroke-width="2.5" stroke-linecap="round"/>
-        <line x1="60" y1="30" x2="60" y2="75" stroke="#f5e642" stroke-width="2.5" stroke-linecap="round"/>
-        <line x1="60" y1="38" x2="45" y2="30" stroke="#f5e642" stroke-width="2.5" stroke-linecap="round"/>
-        <line x1="45" y1="30" x2="38" y2="18" stroke="#f5e642" stroke-width="2.5" stroke-linecap="round"/>
-        <line x1="60" y1="38" x2="75" y2="30" stroke="#f5e642" stroke-width="2.5" stroke-linecap="round"/>
-        <line x1="75" y1="30" x2="82" y2="18" stroke="#f5e642" stroke-width="2.5" stroke-linecap="round"/>
-        <line x1="60" y1="75" x2="42" y2="95" stroke="#f5e642" stroke-width="2.5" stroke-linecap="round"/>
-        <line x1="42" y1="95" x2="35" y2="120" stroke="#f5e642" stroke-width="2.5" stroke-linecap="round"/>
-        <line x1="60" y1="75" x2="78" y2="95" stroke="#f5e642" stroke-width="2.5" stroke-linecap="round"/>
-        <line x1="78" y1="95" x2="85" y2="120" stroke="#f5e642" stroke-width="2.5" stroke-linecap="round"/>
-      </svg>`,
-      bilibiliQuery: "smurf dance move 教学 hip hop"
-    },
-    {
-      name: "Reject",
-      nameZh: "拒绝步",
-      level: "中级",
-      desc: "一腿踢出同时身体后仰，手臂向后甩，像在推拒什么东西，充满态度感。",
-      tips: ["踢腿和后仰同时发生", "手臂向后自然甩开", "重心在支撑腿上稳住", "表情配合像在说不"],
-      svg: `<svg viewBox="0 0 120 140" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <circle cx="65" cy="22" r="10" stroke="#f5e642" stroke-width="2.5" stroke-linecap="round"/>
-        <path d="M65 32 Q68 50 66 75" stroke="#f5e642" stroke-width="2.5" stroke-linecap="round" fill="none"/>
-        <line x1="65" y1="42" x2="82" y2="50" stroke="#f5e642" stroke-width="2.5" stroke-linecap="round"/>
-        <line x1="82" y1="50" x2="92" y2="58" stroke="#f5e642" stroke-width="2.5" stroke-linecap="round"/>
-        <line x1="65" y1="42" x2="80" y2="38" stroke="#f5e642" stroke-width="2.5" stroke-linecap="round"/>
-        <line x1="80" y1="38" x2="90" y2="32" stroke="#f5e642" stroke-width="2.5" stroke-linecap="round"/>
-        <line x1="66" y1="75" x2="55" y2="105" stroke="#f5e642" stroke-width="2.5" stroke-linecap="round"/>
-        <line x1="55" y1="105" x2="52" y2="130" stroke="#f5e642" stroke-width="2.5" stroke-linecap="round"/>
-        <line x1="66" y1="75" x2="45" y2="85" stroke="#f5e642" stroke-width="2.5" stroke-linecap="round"/>
-        <line x1="45" y1="85" x2="30" y2="80" stroke="#f5e642" stroke-width="2.5" stroke-linecap="round"/>
-      </svg>`,
-      bilibiliQuery: "reject dance move 教学 hip hop"
-    },
-    {
-      name: "Toe Stand",
-      nameZh: "脚尖站立",
-      level: "高级",
-      desc: "单脚踮起保持平衡，手臂伸展维持姿态，考验核心力量和身体控制。",
-      tips: ["核心收紧保持稳定", "视线固定一个点", "手臂展开帮助平衡", "先双脚练习再单脚"],
-      svg: `<svg viewBox="0 0 120 140" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <circle cx="60" cy="15" r="10" stroke="#f5e642" stroke-width="2.5" stroke-linecap="round"/>
-        <line x1="60" y1="25" x2="60" y2="72" stroke="#f5e642" stroke-width="2.5" stroke-linecap="round"/>
-        <line x1="60" y1="38" x2="35" y2="32" stroke="#f5e642" stroke-width="2.5" stroke-linecap="round"/>
-        <line x1="35" y1="32" x2="20" y2="28" stroke="#f5e642" stroke-width="2.5" stroke-linecap="round"/>
-        <line x1="60" y1="38" x2="85" y2="32" stroke="#f5e642" stroke-width="2.5" stroke-linecap="round"/>
-        <line x1="85" y1="32" x2="100" y2="28" stroke="#f5e642" stroke-width="2.5" stroke-linecap="round"/>
-        <line x1="60" y1="72" x2="60" y2="120" stroke="#f5e642" stroke-width="2.5" stroke-linecap="round"/>
-        <line x1="60" y1="120" x2="60" y2="132" stroke="#f5e642" stroke-width="2.5" stroke-linecap="round"/>
-        <circle cx="60" cy="134" r="3" stroke="#f5e642" stroke-width="2" stroke-linecap="round"/>
-        <line x1="60" y1="80" x2="75" y2="88" stroke="#f5e642" stroke-width="2.5" stroke-linecap="round"/>
-        <line x1="75" y1="88" x2="78" y2="80" stroke="#f5e642" stroke-width="2.5" stroke-linecap="round"/>
-      </svg>`,
-      bilibiliQuery: "toe stand dance balance 教学"
-    }
-  ]
-};
+let MOVES_DATA = {};
 
 // === Mobile Detection ===
 const isMobile = /Android|iPhone|iPad|iPod|Mobile/i.test(navigator.userAgent);
@@ -515,6 +17,7 @@ let currentStyle = 'locking';
 // === Render Cards ===
 function renderCards(style) {
   const moves = MOVES_DATA[style];
+  if (!moves) return;
   cardsContainer.innerHTML = '';
 
   moves.forEach((move, index) => {
@@ -523,12 +26,16 @@ function renderCards(style) {
     card.style.animationDelay = `${index * 0.05}s`;
 
     card.innerHTML = `
+      <div class="card-actions">
+        <button class="card-action-btn card-move-btn" data-index="${index}" data-dir="up" title="上移" ${index === 0 ? 'disabled' : ''}>↑</button>
+        <button class="card-action-btn card-move-btn" data-index="${index}" data-dir="down" title="下移" ${index === moves.length - 1 ? 'disabled' : ''}>↓</button>
+        <button class="card-action-btn card-edit-btn" data-index="${index}" title="编辑">✎</button>
+        <button class="card-action-btn card-delete-btn" data-index="${index}" title="删除">×</button>
+      </div>
       <div class="card-header">
         <div class="card-svg">${move.svg}</div>
         <div class="card-info">
           <div class="card-name">${move.name}</div>
-          <div class="card-name-zh">${move.nameZh}</div>
-          <span class="card-level">${move.level}</span>
         </div>
       </div>
       <p class="card-desc">${move.desc}</p>
@@ -544,8 +51,14 @@ function renderCards(style) {
     `;
 
     card.addEventListener('click', (e) => {
-      if (e.target.closest('.card-bili')) return;
+      if (e.target.closest('.card-bili') || e.target.closest('.card-action-btn')) return;
       card.classList.toggle('expanded');
+    });
+
+    card.querySelector('.card-edit-btn').addEventListener('click', () => openEditModal(index));
+    card.querySelector('.card-delete-btn').addEventListener('click', () => deleteMove(index));
+    card.querySelectorAll('.card-move-btn').forEach(btn => {
+      btn.addEventListener('click', () => moveCard(parseInt(btn.dataset.index), btn.dataset.dir));
     });
 
     if (isMobile) {
@@ -606,5 +119,382 @@ window.addEventListener('scroll', () => {
   topNav.classList.toggle('scrolled', window.scrollY > 50);
 });
 
+// === API Key Management ===
+const apiModal = document.getElementById('apiModal');
+const apiKeyBtn = document.getElementById('apiKeyBtn');
+const apiModalClose = document.getElementById('apiModalClose');
+const configSelect = document.getElementById('configSelect');
+const configAdd = document.getElementById('configAdd');
+const configDelete = document.getElementById('configDelete');
+const configSave = document.getElementById('configSave');
+
+const DEFAULT_CONFIG = { name: '默认方案', baseUrl: '', apiKey: '', format: 'openai', model: '' };
+
+function loadConfigs() {
+  const raw = localStorage.getItem('apiConfigs');
+  if (raw) return JSON.parse(raw);
+  return { configs: [{ ...DEFAULT_CONFIG }], activeIndex: 0 };
+}
+
+function saveConfigs(data) {
+  localStorage.setItem('apiConfigs', JSON.stringify(data));
+}
+
+function fillForm(config) {
+  document.getElementById('cfgName').value = config.name || '';
+  document.getElementById('cfgUrl').value = config.baseUrl || '';
+  document.getElementById('cfgKey').value = config.apiKey || '';
+  document.getElementById('cfgFormat').value = config.format || 'openai';
+  document.getElementById('cfgModel').value = config.model || '';
+}
+
+function readForm() {
+  return {
+    name: document.getElementById('cfgName').value.trim() || '未命名方案',
+    baseUrl: document.getElementById('cfgUrl').value.trim(),
+    apiKey: document.getElementById('cfgKey').value.trim(),
+    format: document.getElementById('cfgFormat').value,
+    model: document.getElementById('cfgModel').value.trim()
+  };
+}
+
+function renderConfigSelector() {
+  const data = loadConfigs();
+  configSelect.innerHTML = data.configs.map((c, i) =>
+    `<option value="${i}" ${i === data.activeIndex ? 'selected' : ''}>${c.name}</option>`
+  ).join('');
+  fillForm(data.configs[data.activeIndex]);
+}
+
+function openApiModal() {
+  renderConfigSelector();
+  apiModal.classList.add('active');
+}
+
+function closeApiModal() {
+  apiModal.classList.remove('active');
+}
+
+apiKeyBtn.addEventListener('click', openApiModal);
+apiModalClose.addEventListener('click', closeApiModal);
+apiModal.addEventListener('click', (e) => {
+  if (e.target === apiModal) closeApiModal();
+});
+
+configSelect.addEventListener('change', () => {
+  const data = loadConfigs();
+  data.activeIndex = parseInt(configSelect.value);
+  saveConfigs(data);
+  fillForm(data.configs[data.activeIndex]);
+});
+
+configAdd.addEventListener('click', () => {
+  const data = loadConfigs();
+  data.configs.push({ ...DEFAULT_CONFIG, name: `方案 ${data.configs.length + 1}` });
+  data.activeIndex = data.configs.length - 1;
+  saveConfigs(data);
+  renderConfigSelector();
+});
+
+configDelete.addEventListener('click', () => {
+  const data = loadConfigs();
+  if (data.configs.length <= 1) return;
+  data.configs.splice(data.activeIndex, 1);
+  data.activeIndex = Math.min(data.activeIndex, data.configs.length - 1);
+  saveConfigs(data);
+  renderConfigSelector();
+});
+
+configSave.addEventListener('click', () => {
+  const data = loadConfigs();
+  data.configs[data.activeIndex] = readForm();
+  saveConfigs(data);
+  renderConfigSelector();
+});
+
+// === Edit & Delete Move ===
+let editingIndex = null;
+
+function openEditModal(index) {
+  const move = MOVES_DATA[currentStyle][index];
+  editingIndex = index;
+  document.getElementById('editName').value = move.name;
+  document.getElementById('editDesc').value = move.desc;
+  document.getElementById('editTips').value = move.tips.join('\n');
+  document.getElementById('editSvg').value = move.svg || '';
+  document.getElementById('editSvgPreview').innerHTML = move.svg || '';
+  document.getElementById('editModal').classList.add('active');
+}
+
+document.getElementById('editSvg').addEventListener('input', (e) => {
+  document.getElementById('editSvgPreview').innerHTML = e.target.value;
+});
+
+function closeEditModal() {
+  document.getElementById('editModal').classList.remove('active');
+  editingIndex = null;
+}
+
+document.getElementById('editModalClose').addEventListener('click', closeEditModal);
+document.getElementById('editModal').addEventListener('click', (e) => {
+  if (e.target === document.getElementById('editModal')) closeEditModal();
+});
+
+const FIELD_PROMPTS = {
+  desc: `你是一个街舞教学专家。请为舞种"{style}"中的动作"{name}"生成一句中文描述（30-50字，说明动作特征和视觉效果）。只返回描述文字，不要其他内容。`,
+  tips: `你是一个街舞教学专家。请为舞种"{style}"中的动作"{name}"生成4条中文练习建议（每条10-15字）。以JSON数组格式返回，如 ["建议1","建议2","建议3","建议4"]。只返回JSON数组，不要其他内容。`,
+  svg: `你是一个街舞教学专家。请为舞种"{style}"中的动作"{name}"生成一个120x140 viewBox的SVG火柴人图示，用#f5e642描边，stroke-width 2.5，展示该动作的标志性姿态。只返回SVG代码，不要其他内容。`
+};
+
+document.querySelectorAll('.ai-field-btn').forEach(btn => {
+  btn.addEventListener('click', async () => {
+    const field = btn.dataset.field;
+    const name = document.getElementById('editName').value.trim();
+    if (!name) { alert('请先填写动作名称'); return; }
+    btn.textContent = '...';
+    btn.disabled = true;
+    try {
+      const prompt = FIELD_PROMPTS[field].replace('{name}', name).replace('{style}', currentStyle);
+      const raw = await callAI(prompt);
+      if (field === 'desc') {
+        document.getElementById('editDesc').value = raw.trim().replace(/^["']|["']$/g, '');
+      } else if (field === 'tips') {
+        const arr = JSON.parse(raw.match(/\[[\s\S]*\]/)[0]);
+        document.getElementById('editTips').value = arr.join('\n');
+      } else if (field === 'svg') {
+        const svg = raw.match(/<svg[\s\S]*<\/svg>/i)[0];
+        document.getElementById('editSvg').value = svg;
+        document.getElementById('editSvgPreview').innerHTML = svg;
+      }
+    } catch (err) {
+      alert('AI 生成失败：' + err.message);
+    } finally {
+      btn.textContent = 'AI';
+      btn.disabled = false;
+    }
+  });
+});
+
+document.getElementById('editSaveBtn').addEventListener('click', async () => {
+  if (editingIndex === null) return;
+  const move = MOVES_DATA[currentStyle][editingIndex];
+  const updated = {
+    ...move,
+    name: document.getElementById('editName').value.trim(),
+    desc: document.getElementById('editDesc').value.trim(),
+    tips: document.getElementById('editTips').value.split('\n').filter(t => t.trim()),
+    svg: document.getElementById('editSvg').value
+  };
+  try {
+    const res = await fetch('/api/moves/update', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ style: currentStyle, index: editingIndex, move: updated })
+    });
+    if (!res.ok) throw new Error('保存失败');
+    MOVES_DATA = await fetch('moves.json').then(r => r.json());
+    renderCards(currentStyle);
+    closeEditModal();
+  } catch (err) {
+    alert('保存失败：' + err.message);
+  }
+});
+
+async function moveCard(index, dir) {
+  const newIndex = dir === 'up' ? index - 1 : index + 1;
+  try {
+    const res = await fetch('/api/moves/reorder', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ style: currentStyle, from: index, to: newIndex })
+    });
+    if (!res.ok) throw new Error('移动失败');
+    MOVES_DATA = await fetch('moves.json').then(r => r.json());
+    renderCards(currentStyle);
+  } catch (err) {
+    alert('移动失败：' + err.message);
+  }
+}
+
+async function deleteMove(index) {
+  const move = MOVES_DATA[currentStyle][index];
+  if (!confirm(`确定删除动作「${move.name}」？`)) return;
+  try {
+    const res = await fetch('/api/moves/delete', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ style: currentStyle, index })
+    });
+    if (!res.ok) throw new Error('删除失败');
+    MOVES_DATA = await fetch('moves.json').then(r => r.json());
+    renderCards(currentStyle);
+  } catch (err) {
+    alert('删除失败：' + err.message);
+  }
+}
+
+// === Add Move ===
+const addMoveModal = document.getElementById('addMoveModal');
+const addMoveBtn = document.getElementById('addMoveBtn');
+const addMoveModalClose = document.getElementById('addMoveModalClose');
+const generateBtn = document.getElementById('generateBtn');
+const regenerateBtn = document.getElementById('regenerateBtn');
+const confirmAddBtn = document.getElementById('confirmAddBtn');
+const generateLoading = document.getElementById('generateLoading');
+const generateActions = document.getElementById('generateActions');
+const previewArea = document.getElementById('previewArea');
+const previewCard = document.getElementById('previewCard');
+
+let pendingMove = null;
+
+function getActiveConfig() {
+  const data = loadConfigs();
+  return data.configs[data.activeIndex];
+}
+
+const GENERATE_PROMPT = `你是一个街舞教学专家。请为以下舞蹈动作生成信息：
+动作名称：{name}
+舞种：{style}
+
+请以 JSON 格式返回，包含：
+1. "desc": 一句话中文描述（30-50字，说明动作特征和视觉效果）
+2. "tips": 4条中文练习建议的数组（每条10-15字）
+3. "svg": 一个120x140 viewBox的SVG火柴人图示（用#f5e642描边，stroke-width 2.5，展示该动作的标志性姿态）
+4. "bilibiliQuery": B站搜索关键词（英文动作名+教学）
+
+只返回JSON，不要其他内容。`;
+
+async function callAI(prompt) {
+  const config = getActiveConfig();
+  if (!config.baseUrl || !config.apiKey) {
+    throw new Error('请先在 API Key 管理中配置 API 信息');
+  }
+
+  if (config.format === 'anthropic') {
+    const res = await fetch(`${config.baseUrl}/v1/messages`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'x-api-key': config.apiKey,
+        'anthropic-version': '2023-06-01'
+      },
+      body: JSON.stringify({
+        model: config.model,
+        max_tokens: 2048,
+        system: '你是一个街舞教学专家，擅长生成舞蹈动作的描述和SVG图示。',
+        messages: [{ role: 'user', content: prompt }]
+      })
+    });
+    const data = await res.json();
+    if (data.error) throw new Error(data.error.message);
+    return data.content[0].text;
+  } else {
+    const res = await fetch(`${config.baseUrl}/chat/completions`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${config.apiKey}`
+      },
+      body: JSON.stringify({
+        model: config.model,
+        messages: [
+          { role: 'system', content: '你是一个街舞教学专家，擅长生成舞蹈动作的描述和SVG图示。' },
+          { role: 'user', content: prompt }
+        ]
+      })
+    });
+    const data = await res.json();
+    if (data.error) throw new Error(data.error.message || JSON.stringify(data.error));
+    return data.choices[0].message.content;
+  }
+}
+
+function parseAIResponse(text) {
+  const jsonMatch = text.match(/\{[\s\S]*\}/);
+  if (!jsonMatch) throw new Error('AI 返回格式错误，未找到 JSON');
+  return JSON.parse(jsonMatch[0]);
+}
+
+function renderPreview(move) {
+  previewCard.innerHTML = `
+    <div class="card-svg">${move.svg}</div>
+    <div class="card-name">${move.name}</div>
+    <p class="card-desc">${move.desc}</p>
+    <ul class="card-tips">
+      ${move.tips.map(t => `<li>${t}</li>`).join('')}
+    </ul>
+  `;
+}
+
+async function doGenerate() {
+  const name = document.getElementById('moveNameInput').value.trim();
+  const style = document.getElementById('moveStyleSelect').value;
+  if (!name) { alert('请输入动作英文名'); return; }
+
+  generateActions.style.display = 'none';
+  previewArea.style.display = 'none';
+  generateLoading.style.display = 'flex';
+
+  try {
+    const prompt = GENERATE_PROMPT.replace('{name}', name).replace('{style}', style);
+    const raw = await callAI(prompt);
+    const result = parseAIResponse(raw);
+    pendingMove = { name, ...result, _style: style };
+    renderPreview(pendingMove);
+    generateLoading.style.display = 'none';
+    previewArea.style.display = 'block';
+  } catch (err) {
+    generateLoading.style.display = 'none';
+    generateActions.style.display = 'flex';
+    alert('生成失败：' + err.message);
+  }
+}
+
+async function doConfirmAdd() {
+  if (!pendingMove) return;
+  const { _style, ...move } = pendingMove;
+  try {
+    const res = await fetch('/api/moves', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ style: _style, move })
+    });
+    if (!res.ok) throw new Error('保存失败');
+    const freshData = await fetch('moves.json').then(r => r.json());
+    MOVES_DATA = freshData;
+    switchStyle(_style);
+    closeAddMoveModal();
+  } catch (err) {
+    alert('保存失败：' + err.message);
+  }
+}
+
+function openAddMoveModal() {
+  document.getElementById('moveNameInput').value = '';
+  generateActions.style.display = 'flex';
+  generateLoading.style.display = 'none';
+  previewArea.style.display = 'none';
+  pendingMove = null;
+  addMoveModal.classList.add('active');
+}
+
+function closeAddMoveModal() {
+  addMoveModal.classList.remove('active');
+}
+
+addMoveBtn.addEventListener('click', openAddMoveModal);
+addMoveModalClose.addEventListener('click', closeAddMoveModal);
+addMoveModal.addEventListener('click', (e) => {
+  if (e.target === addMoveModal) closeAddMoveModal();
+});
+generateBtn.addEventListener('click', doGenerate);
+regenerateBtn.addEventListener('click', doGenerate);
+confirmAddBtn.addEventListener('click', doConfirmAdd);
+
 // === Initialize ===
-renderCards(currentStyle);
+fetch('moves.json')
+  .then(res => res.json())
+  .then(data => {
+    MOVES_DATA = data;
+    renderCards(currentStyle);
+  });

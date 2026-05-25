@@ -1,0 +1,28 @@
+{
+  "locking": [
+    {
+      "name": "Point",
+      "desc": "标志性的指向动作，一臂有力地向前伸直，配合重心转移，强调方向感和自信。",
+      "tips": [
+        "指尖到肩膀保持一条直线",
+        "眼神跟随手指方向",
+        "后手自然收到身后",
+        "重心偏向指出方向"
+      ],
+      "svg": "<svg viewBox=\"0 0 120 140\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\"><circle cx=\"55\" cy=\"20\" r=\"10\" stroke=\"#f5e642\" stroke-width=\"2.5\" stroke-linecap=\"round\"/><line x1=\"55\" y1=\"30\" x2=\"55\" y2=\"75\" stroke=\"#f5e642\" stroke-width=\"2.5\" stroke-linecap=\"round\"/><line x1=\"55\" y1=\"42\" x2=\"95\" y2=\"38\" stroke=\"#f5e642\" stroke-width=\"2.5\" stroke-linecap=\"round\"/><line x1=\"55\" y1=\"42\" x2=\"30\" y2=\"55\" stroke=\"#f5e642\" stroke-width=\"2.5\" stroke-linecap=\"round\"/><line x1=\"30\" y1=\"55\" x2=\"20\" y2=\"65\" stroke=\"#f5e642\" stroke-width=\"2.5\" stroke-linecap=\"round\"/><line x1=\"55\" y1=\"75\" x2=\"40\" y2=\"105\" stroke=\"#f5e642\" stroke-width=\"2.5\" stroke-linecap=\"round\"/><line x1=\"40\" y1=\"105\" x2=\"38\" y2=\"130\" stroke=\"#f5e642\" stroke-width=\"2.5\" stroke-linecap=\"round\"/><line x1=\"55\" y1=\"75\" x2=\"70\" y2=\"105\" stroke=\"#f5e642\" stroke-width=\"2.5\" stroke-linecap=\"round\"/><line x1=\"70\" y1=\"105\" x2=\"72\" y2=\"130\" stroke=\"#f5e642\" stroke-width=\"2.5\" stroke-linecap=\"round\"/></svg>",
+      "bilibiliQuery": "locking point move 教学"
+    },
+    {
+      "name": "Kick walk",
+      "desc": "交替踢腿前行，腿部高踢配合身体律动，展现Locking特有的夸张步伐和节奏感。",
+      "tips": [
+        "踢腿时脚尖绷直膝盖伸展",
+        "支撑腿微屈保持身体稳定",
+        "手臂自然摆动配合节奏",
+        "重心随踢腿方向平稳移动"
+      ],
+      "svg": "<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 140'><circle cx='60' cy='18' r='9' fill='none' stroke='#f5e642' stroke-width='2.5'/><line x1='60' y1='27' x2='60' y2='70' stroke='#f5e642' stroke-width='2.5'/><line x1='60' y1='40' x2='38' y2='55' stroke='#f5e642' stroke-width='2.5'/><line x1='38' y1='55' x2='28' y2='42' stroke='#f5e642' stroke-width='2.5'/><line x1='60' y1='40' x2='82' y2='55' stroke='#f5e642' stroke-width='2.5'/><line x1='82' y1='55' x2='92' y2='42' stroke='#f5e642' stroke-width='2.5'/><line x1='60' y1='70' x2='45' y2='100' stroke='#f5e642' stroke-width='2.5'/><line x1='45' y1='100' x2='45' y2='130' stroke='#f5e642' stroke-width='2.5'/><line x1='60' y1='70' x2='85' y2='55' stroke='#f5e642' stroke-width='2.5'/><line x1='85' y1='55' x2='105' y2='45' stroke='#f5e642' stroke-width='2.5'/></svg>",
+      "bilibiliQuery": "locking kick walk 教学"
+    }
+  ]
+}
