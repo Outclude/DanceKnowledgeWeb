@@ -4,7 +4,7 @@ const path = require('path');
 const crypto = require('crypto');
 
 const PORT = process.env.PORT || 2326;
-const PASSWORD = '1056788162';
+const PASSWORD = '123321';
 const tokens = new Set();
 
 const MIME_TYPES = {
@@ -74,7 +74,7 @@ const server = http.createServer((req, res) => {
     req.on('end', () => {
       try {
         const payload = JSON.parse(body);
-        const movesPath = path.join(__dirname, 'moves.json');
+        const movesPath = path.join(__dirname, 'public', 'moves.json');
         const movesData = JSON.parse(fs.readFileSync(movesPath, 'utf-8'));
 
         if (req.url === '/api/moves') {
@@ -108,17 +108,28 @@ const server = http.createServer((req, res) => {
   // Route: / -> visit.html, /admin -> index.html
   let filePath;
   if (req.url === '/') {
-    filePath = path.join(__dirname, 'visit.html');
+    filePath = path.join(__dirname, 'public', 'visit.html');
   } else if (req.url === '/admin') {
-    filePath = path.join(__dirname, 'index.html');
+    filePath = path.join(__dirname, 'public', 'index.html');
   } else {
-    filePath = path.join(__dirname, req.url);
+    filePath = path.join(__dirname, 'public', req.url);
   }
 
-  let ext = path.extname(filePath);
+  // Prevent path traversal
+  const resolved = path.resolve(filePath);
+  const publicDir = path.resolve(__dirname, 'public');
+  if (!resolved.startsWith(publicDir)) {
+    res.writeHead(403, { 'Content-Type': 'text/plain' });
+    res.end('403 Forbidden');
+    return;
+  }
+
+  let ext = path.extname(resolved);
   if (!ext) {
-    filePath += '.html';
+    filePath = resolved + '.html';
     ext = '.html';
+  } else {
+    filePath = resolved;
   }
 
   const contentType = MIME_TYPES[ext] || 'application/octet-stream';
