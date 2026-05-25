@@ -769,15 +769,16 @@ body::before {
 }
 
 .modal-btn {
-  font-family: var(--font-title);
+  font-family: var(--font-body);
   font-size: 1.1rem;
+  font-weight: 500;
   padding: 0.6rem 2rem;
   background: var(--accent);
   color: var(--bg);
   border: none;
   border-radius: 6px;
   cursor: pointer;
-  letter-spacing: 2px;
+  letter-spacing: 0.5px;
   transition: opacity 0.2s;
 }
 
