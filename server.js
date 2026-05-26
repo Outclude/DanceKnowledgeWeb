@@ -140,7 +140,13 @@ const server = http.createServer((req, res) => {
       res.end('404 Not Found');
       return;
     }
-    res.writeHead(200, { 'Content-Type': contentType });
+    const headers = { 'Content-Type': contentType };
+    if (ext === '.woff2' || ext === '.woff' || ext === '.ttf') {
+      headers['Cache-Control'] = 'public, max-age=31536000, immutable';
+    } else if (ext === '.css' || ext === '.js') {
+      headers['Cache-Control'] = 'public, max-age=3600';
+    }
+    res.writeHead(200, headers);
     res.end(data);
   });
 });
