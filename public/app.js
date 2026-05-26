@@ -357,21 +357,66 @@ document.querySelectorAll('.ai-field-btn').forEach(btn => {
     const name = document.getElementById('editName').value.trim();
     if (!name) { alert('请先填写动作名称'); return; }
 
-    let prompt;
     if (field === 'svg') {
       const userInput = window.prompt('输入自定义 SVG 提示词（留空则使用默认提示词，引用动作描述）：', '');
       if (userInput === null) return;
+      let prompt;
       if (userInput.trim()) {
         prompt = `你是一个街舞教学专家。请生成一个120x140 viewBox的动画SVG火柴人图示，用#f5e642描边，stroke-width 2.5。要求：${userInput.trim()}。用CSS animation或SMIL动画，动画循环播放，时长1-2秒。只返回SVG代码，不要其他内容。`;
       } else {
         const desc = document.getElementById('editDesc').value.trim();
         prompt = FIELD_PROMPTS[field].replace('{name}', name).replace('{style}', currentStyle).replace('{desc}', desc);
       }
-    } else {
-      const desc = document.getElementById('editDesc').value.trim();
-      prompt = FIELD_PROMPTS[field].replace('{name}', name).replace('{style}', currentStyle).replace('{desc}', desc);
+
+      const count = 3;
+      const picker = document.getElementById('svgPicker');
+      const grid = document.getElementById('svgPickerGrid');
+      grid.innerHTML = '';
+      picker.style.display = '';
+      btn.textContent = '...';
+      btn.disabled = true;
+
+      for (let i = 0; i < count; i++) {
+        const item = document.createElement('div');
+        item.className = 'svg-picker-item loading';
+        item.textContent = '生成中...';
+        grid.appendChild(item);
+      }
+
+      const items = grid.querySelectorAll('.svg-picker-item');
+      const promises = Array.from({ length: count }, (_, i) =>
+        callAI(prompt).then(raw => {
+          const match = raw.match(/<svg[\s\S]*<\/svg>/i);
+          if (match) {
+            items[i].className = 'svg-picker-item';
+            items[i].innerHTML = match[0];
+            items[i].dataset.svg = match[0];
+          } else {
+            items[i].textContent = '生成失败';
+          }
+        }).catch(() => {
+          items[i].textContent = '生成失败';
+        })
+      );
+
+      await Promise.allSettled(promises);
+      btn.textContent = 'AI';
+      btn.disabled = false;
+
+      grid.querySelectorAll('.svg-picker-item[data-svg]').forEach(item => {
+        item.addEventListener('click', () => {
+          document.getElementById('editSvg').value = item.dataset.svg;
+          document.getElementById('editSvgPreview').innerHTML = item.dataset.svg;
+          picker.style.display = 'none';
+        });
+      });
+
+      document.getElementById('svgPickerClose').onclick = () => { picker.style.display = 'none'; };
+      return;
     }
 
+    const desc = document.getElementById('editDesc').value.trim();
+    const prompt = FIELD_PROMPTS[field].replace('{name}', name).replace('{style}', currentStyle).replace('{desc}', desc);
     btn.textContent = '...';
     btn.disabled = true;
     try {
@@ -381,10 +426,6 @@ document.querySelectorAll('.ai-field-btn').forEach(btn => {
       } else if (field === 'tips') {
         const arr = JSON.parse(raw.match(/\[[\s\S]*\]/)[0]);
         document.getElementById('editTips').value = arr.join('\n');
-      } else if (field === 'svg') {
-        const svg = raw.match(/<svg[\s\S]*<\/svg>/i)[0];
-        document.getElementById('editSvg').value = svg;
-        document.getElementById('editSvgPreview').innerHTML = svg;
       }
     } catch (err) {
       alert('AI 生成失败：' + err.message);
