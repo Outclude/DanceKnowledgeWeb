@@ -1,4 +1,5 @@
 const http = require('http');
+const https = require('https');
 const fs = require('fs');
 const path = require('path');
 const crypto = require('crypto');
@@ -100,6 +101,40 @@ const server = http.createServer((req, res) => {
       } catch (err) {
         res.writeHead(500, { 'Content-Type': 'application/json' });
         res.end(JSON.stringify({ error: err.message }));
+      }
+    });
+    return;
+  }
+
+  // AI proxy endpoint
+  if (req.method === 'POST' && req.url === '/api/ai-proxy') {
+    let body = '';
+    req.on('data', chunk => { body += chunk; });
+    req.on('end', () => {
+      try {
+        const { url, headers: reqHeaders, body: reqBody } = JSON.parse(body);
+        const parsed = new URL(url);
+        const mod = parsed.protocol === 'https:' ? https : http;
+        const proxyReq = mod.request(parsed, {
+          method: 'POST',
+          headers: { ...reqHeaders, 'Content-Type': 'application/json' }
+        }, proxyRes => {
+          let data = '';
+          proxyRes.on('data', chunk => { data += chunk; });
+          proxyRes.on('end', () => {
+            res.writeHead(proxyRes.statusCode, { 'Content-Type': 'application/json' });
+            res.end(data);
+          });
+        });
+        proxyReq.on('error', (e) => {
+          res.writeHead(502, { 'Content-Type': 'application/json' });
+          res.end(JSON.stringify({ error: '代理请求失败: ' + e.message }));
+        });
+        proxyReq.write(reqBody);
+        proxyReq.end();
+      } catch (e) {
+        res.writeHead(400, { 'Content-Type': 'application/json' });
+        res.end(JSON.stringify({ error: e.message }));
       }
     });
     return;

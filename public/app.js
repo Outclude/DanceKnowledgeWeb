@@ -546,40 +546,40 @@ async function callAI(prompt) {
     throw new Error('请先在 API Key 管理中配置 API 信息');
   }
 
+  let targetUrl, headers, reqBody;
+
   if (config.format === 'anthropic') {
-    const res = await fetch(`${config.baseUrl}/v1/messages`, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'x-api-key': config.apiKey,
-        'anthropic-version': '2023-06-01'
-      },
-      body: JSON.stringify({
-        model: config.model,
-        max_tokens: 2048,
-        system: '你是一个街舞教学专家，擅长生成舞蹈动作的描述和SVG图示。',
-        messages: [{ role: 'user', content: prompt }]
-      })
+    targetUrl = `${config.baseUrl}/v1/messages`;
+    headers = { 'x-api-key': config.apiKey, 'anthropic-version': '2023-06-01' };
+    reqBody = JSON.stringify({
+      model: config.model,
+      max_tokens: 2048,
+      system: '你是一个街舞教学专家，擅长生成舞蹈动作的描述和SVG图示。',
+      messages: [{ role: 'user', content: prompt }]
     });
-    const data = await res.json();
-    if (data.error) throw new Error(data.error.message);
+  } else {
+    targetUrl = `${config.baseUrl}/chat/completions`;
+    headers = { 'Authorization': `Bearer ${config.apiKey}` };
+    reqBody = JSON.stringify({
+      model: config.model,
+      messages: [
+        { role: 'system', content: '你是一个街舞教学专家，擅长生成舞蹈动作的描述和SVG图示。' },
+        { role: 'user', content: prompt }
+      ]
+    });
+  }
+
+  const res = await fetch('/api/ai-proxy', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ url: targetUrl, headers, body: reqBody })
+  });
+  const data = await res.json();
+
+  if (config.format === 'anthropic') {
+    if (data.error) throw new Error(data.error.message || JSON.stringify(data.error));
     return data.content[0].text;
   } else {
-    const res = await fetch(`${config.baseUrl}/chat/completions`, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'Authorization': `Bearer ${config.apiKey}`
-      },
-      body: JSON.stringify({
-        model: config.model,
-        messages: [
-          { role: 'system', content: '你是一个街舞教学专家，擅长生成舞蹈动作的描述和SVG图示。' },
-          { role: 'user', content: prompt }
-        ]
-      })
-    });
-    const data = await res.json();
     if (data.error) throw new Error(data.error.message || JSON.stringify(data.error));
     return data.choices[0].message.content;
   }
