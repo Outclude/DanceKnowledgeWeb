@@ -348,7 +348,10 @@ document.getElementById('editModal').addEventListener('mouseup', (e) => {
 const FIELD_PROMPTS = {
   desc: `你是一个街舞教学专家。请为舞种"{style}"中的动作"{name}"生成一句中文描述（30-50字，说明动作特征和视觉效果）。直接返回描述文字，不要用引号包裹，不要用markdown，不要任何前缀或解释。`,
   tips: `你是一个街舞教学专家。请为舞种"{style}"中的动作"{name}"生成4条中文练习建议（每条10-15字）。动作描述：{desc}。直接返回JSON数组，不要用markdown代码块包裹，不要加任何解释。示例格式：["从基础步伐开始练习","注意手臂发力方向","配合节拍反复训练","镜子前观察动作幅度"]`,
-  svg: `你是一个街舞教学专家。请为舞种"{style}"中的动作"{name}"生成一个120x140 viewBox的动画SVG火柴人图示，用#f5e642描边，stroke-width 2.5。动作描述：{desc}。要求：用CSS animation或SMIL动画让火柴人展示该动作的运动过程（如手臂摆动、身体旋转等），动画循环播放，时长1-2秒。直接返回<svg>...</svg>代码，不要用markdown代码块包裹，不要加任何解释。`
+  svg: `为舞种"{style}"中的动作"{name}"生成SVG火柴人动画图示。动作描述：{desc}。
+规格：viewBox="0 0 120 140"，stroke="#f5e642"，stroke-width="2.5"，fill="none"。
+用SMIL <animate>/<animateTransform> 让火柴人展示该动作的运动过程，动画循环播放。
+回复必须以<svg开头，以</svg>结尾，中间不要有任何其他文字。`
 };
 
 document.querySelectorAll('.ai-field-btn').forEach(btn => {
@@ -362,7 +365,10 @@ document.querySelectorAll('.ai-field-btn').forEach(btn => {
       if (userInput === null) return;
       let prompt;
       if (userInput.trim()) {
-        prompt = `你是一个街舞教学专家。请生成一个120x140 viewBox的动画SVG火柴人图示，用#f5e642描边，stroke-width 2.5。要求：${userInput.trim()}。用CSS animation或SMIL动画，动画循环播放，时长1-2秒。只返回SVG代码，不要其他内容。`;
+        prompt = `生成一个SVG火柴人动画图示。要求：${userInput.trim()}。
+规格：viewBox="0 0 120 140"，stroke="#f5e642"，stroke-width="2.5"，fill="none"。
+用SMIL <animate>/<animateTransform> 实现动画循环播放。
+回复必须以<svg开头，以</svg>结尾，中间不要有任何其他文字。`;
       } else {
         const desc = document.getElementById('editDesc').value.trim();
         prompt = FIELD_PROMPTS[field].replace('{name}', name).replace('{style}', currentStyle).replace('{desc}', desc);
@@ -384,20 +390,25 @@ document.querySelectorAll('.ai-field-btn').forEach(btn => {
       }
 
       const items = grid.querySelectorAll('.svg-picker-item');
-      const promises = Array.from({ length: count }, (_, i) =>
-        callAI(prompt).then(raw => {
-          const match = stripMarkdownBlock(raw).match(/<svg[\s\S]*<\/svg>/i);
-          if (match) {
-            items[i].className = 'svg-picker-item';
-            items[i].innerHTML = match[0];
-            items[i].dataset.svg = match[0];
-          } else {
-            items[i].textContent = '生成失败';
-          }
-        }).catch(() => {
-          items[i].textContent = '生成失败';
-        })
-      );
+      const maxRetries = 2;
+      async function generateOne(i) {
+        for (let attempt = 0; attempt <= maxRetries; attempt++) {
+          try {
+            if (attempt > 0) items[i].textContent = `重试中(${attempt})...`;
+            const raw = await callAI(prompt);
+            const cleaned = stripMarkdownBlock(raw);
+            const match = cleaned.match(/<svg[\s\S]*<\/svg>/i);
+            if (match) {
+              items[i].className = 'svg-picker-item';
+              items[i].innerHTML = match[0];
+              items[i].dataset.svg = match[0];
+              return;
+            }
+          } catch (e) {}
+        }
+        items[i].textContent = '生成失败';
+      }
+      const promises = Array.from({ length: count }, (_, i) => generateOne(i));
 
       await Promise.allSettled(promises);
       btn.textContent = 'AI';
