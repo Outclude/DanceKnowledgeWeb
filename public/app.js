@@ -294,11 +294,7 @@ document.getElementById('configExport').addEventListener('click', () => {
   const data = loadConfigs();
   const config = data.configs[data.activeIndex];
   const str = btoa(unescape(encodeURIComponent(JSON.stringify(config))));
-  if (navigator.clipboard && window.isSecureContext) {
-    navigator.clipboard.writeText(str).then(() => alert('已复制到剪贴板'));
-  } else {
-    window.prompt('复制以下方案字符串：', str);
-  }
+  prompt('方案字符串（全选复制）：', str);
 });
 
 document.getElementById('configImport').addEventListener('click', () => {
