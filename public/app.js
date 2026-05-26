@@ -356,11 +356,25 @@ document.querySelectorAll('.ai-field-btn').forEach(btn => {
     const field = btn.dataset.field;
     const name = document.getElementById('editName').value.trim();
     if (!name) { alert('请先填写动作名称'); return; }
+
+    let prompt;
+    if (field === 'svg') {
+      const userInput = window.prompt('输入自定义 SVG 提示词（留空则使用默认提示词，引用动作描述）：', '');
+      if (userInput === null) return;
+      if (userInput.trim()) {
+        prompt = `你是一个街舞教学专家。请生成一个120x140 viewBox的动画SVG火柴人图示，用#f5e642描边，stroke-width 2.5。要求：${userInput.trim()}。用CSS animation或SMIL动画，动画循环播放，时长1-2秒。只返回SVG代码，不要其他内容。`;
+      } else {
+        const desc = document.getElementById('editDesc').value.trim();
+        prompt = FIELD_PROMPTS[field].replace('{name}', name).replace('{style}', currentStyle).replace('{desc}', desc);
+      }
+    } else {
+      const desc = document.getElementById('editDesc').value.trim();
+      prompt = FIELD_PROMPTS[field].replace('{name}', name).replace('{style}', currentStyle).replace('{desc}', desc);
+    }
+
     btn.textContent = '...';
     btn.disabled = true;
     try {
-      const desc = document.getElementById('editDesc').value.trim();
-      const prompt = FIELD_PROMPTS[field].replace('{name}', name).replace('{style}', currentStyle).replace('{desc}', desc);
       const raw = await callAI(prompt);
       if (field === 'desc') {
         document.getElementById('editDesc').value = raw.trim().replace(/^["']|["']$/g, '');
